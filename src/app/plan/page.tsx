@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useApp } from "@/features/app-store";
 import { Card, SectionTitle, Button, EmptyState, ErrorBox, ConfirmDialog, PlanStatusBadge, PageLoading } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/layout/page-header";
+import { Icon } from "@/components/ui/icons";
 import { todayIso, faDate } from "@/lib/dates";
 import {
   currentPlan,
@@ -39,7 +40,7 @@ export default function PlanPage() {
   if (!plan || !displayed) {
     return (
       <>
-        <PageHeader title="برنامه درمان" subtitle="وضعیت فعلی: ثبت نشده" />
+        <PageHeader title="مشخصات برنامه درمان" subtitle="وضعیت فعلی: ثبت نشده" />
         <EmptyState
           icon="plan"
           title="برنامه‌ای ثبت نشده است"
@@ -69,7 +70,7 @@ export default function PlanPage() {
 
   return (
     <>
-      <PageHeader title="برنامه درمان" subtitle={plan.isDemo ? "داده نمایشی" : undefined} />
+      <PageHeader title="مشخصات برنامه درمان" subtitle={plan.isDemo ? "داده نمایشی" : "تنظیم امن و اختصاصی"} />
 
       {/* hero status card */}
       <div className={`hero-card p-5 ${displayed.flags.reviewOverdue ? "ring-2 ring-tertiary-fixed-dim" : ""}`}>
@@ -80,8 +81,6 @@ export default function PlanPage() {
         <h2 className="t-headline-sm text-white">{plan.title}</h2>
         <div className="t-body-md mt-2 space-y-1 text-white/85">
           <p>منبع: {PLAN_SOURCE_LABELS[plan.source]}</p>
-          <p>وضعیت مجوز: {AUTHORIZATION_LABELS[plan.authorization]}</p>
-          {plan.authorizedBy ? <p>تأییدکننده ثبت‌شده: {plan.authorizedBy}</p> : null}
           <p>تاریخ اجرا: {faDate(plan.effectiveDate)}</p>
           <p>
             مرور بعدی: {faDate(plan.nextReviewDate)}
@@ -92,6 +91,29 @@ export default function PlanPage() {
               : ""}
           </p>
         </div>
+
+        {/* authorization confirmation row (approved design: green check row) */}
+        {plan.authorization === "authorized" ? (
+          <div className="mt-3 flex items-center gap-2.5 rounded-card bg-secondary-container/90 p-3">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-on-secondary-container/15 text-on-secondary-container">
+              <Icon name="check" size={15} />
+            </span>
+            <p className="t-label-lg text-on-secondary-container">
+              این برنامه مورد تأیید درمانگر من است — تأییدکننده ثبت‌شده:{" "}
+              <b>{plan.authorizedBy ?? "—"}</b>
+              {plan.authorization === "authorized" && plan.authorizedAt
+                ? ` (${faDate(plan.authorizedAt.slice(0, 10))})`
+                : ""}
+            </p>
+          </div>
+        ) : (
+          <div className="mt-3 flex items-center gap-2.5 rounded-card bg-white/10 p-3">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/15 text-white">
+              <Icon name="alert" size={15} />
+            </span>
+            <p className="t-label-lg text-white">{AUTHORIZATION_LABELS[plan.authorization]}</p>
+          </div>
+        )}
         {displayed.flags.reviewOverdue ? (
           <p className="t-body-md mt-3 rounded-lg bg-white/10 p-2 text-white">
             تاریخ مرور گذشته است. برنامه به‌طور خودکار جلو برده نمی‌شود؛ برای ادامه یا تغییر،

@@ -1,18 +1,19 @@
 "use client";
 
 /**
- * Reports & trends (approved screen 03). Every measure is explicitly defined;
- * missing days create chart gaps; prescribed-vs-actual only when units match.
+ * Reports & trends — following the approved design (screen 02):
+ * dark gradient hero, ring stats, phase progress bar, summary grid, symptom
+ * bars, dose chart, and a dark "export for visit" CTA.
+ * Every measure is explicitly defined from recorded data only; missing days
+ * create chart gaps; nothing here is a clinical judgement.
  */
 
 import { useMemo, useState } from "react";
 import { useApp } from "@/features/app-store";
-import { Card, SectionTitle, Button, PageLoading } from "@/components/ui/primitives";
-import { PageHeader } from "@/components/layout/page-header";
+import { Card, SectionTitle, PageLoading } from "@/components/ui/primitives";
 import { LineChart, type SeriesPoint } from "@/components/charts/line-chart";
-import { todayIso, addDaysIso } from "@/lib/dates";
-import { parsePositiveDecimal } from "@/lib/medication-units";
-import { currentPlan, PLAN_STATUS_LABELS } from "@/lib/plan/status";
+import { todayIso, addDaysIso, daysBetweenIso } from "@/lib/dates";
+import { parsePositiveDecimal, formatAmount } from "@/lib/medication-units";
 import { Icon } from "@/components/ui/icons";
 
 type Period = "week" | "month" | "all";
@@ -28,14 +29,73 @@ function downloadCsv(filename: string, rows: string[][]): void {
   URL.revokeObjectURL(url);
 }
 
+/** Small donut ring (display-only percentage). */
+function Ring({ pct, label, value }: { pct: number | null; label: string; value: string }) {
+  const R = 26;
+  const C = 2 * Math.PI * R;
+  const off = pct === null ? C : C * (1 - Math.min(100, Math.max(0, pct)) / 100);
+  return (
+    <div className="flex flex-1 items-center gap-3 rounded-card bg-surface-container-low p-3">
+      <svg width="64" height="64" viewBox="0 0 64 64" className="shrink-0" aria-hidden="true">
+        <circle cx="32" cy="32" r={R} fill="none" stroke="var(--color-surface-container-highest)" strokeWidth="7" />
+        <circle
+          cx="32"
+          cy="32"
+          r={R}
+          fill="none"
+          stroke="var(--color-secondary)"
+          strokeWidth="7"
+          strokeLinecap="round"
+          strokeDasharray={C}
+          strokeDashoffset={off}
+          transform="rotate(-90 32 32)"
+        />
+        <text x="32" y="37" textAnchor="middle" className="fill-current text-on-surface" fontSize="13" fontWeight="700">
+          {value}
+        </text>
+      </svg>
+      <p className="t-label-md text-on-surface-variant">{label}</p>
+    </div>
+  );
+}
+
+/** Horizontal measure bar used in the symptom summary (0–100 display). */
+function MeasureBar({
+  icon,
+  title,
+  sub,
+  pct,
+}: {
+  icon: "moon" | "zap" | "shield";
+  title: string;
+  sub: string;
+  pct: number | null;
+}) {
+  const w = pct === null ? 0 : Math.min(100, Math.max(0, pct));
+  return (
+    <div className="rounded-card bg-surface-container-low p-3">
+      <div className="flex items-center justify-between">
+        <span className="t-label-lg flex items-center gap-1.5 text-on-surface">
+          <Icon name={icon} size={15} className="text-secondary" />
+          {title}
+        </span>
+        <span className="t-label-md text-on-surface-variant">{sub}</span>
+      </div>
+      <div className="mt-2 h-2.5 overflow-hidden rounded-pill bg-surface-container-highest">
+        <div className="h-full rounded-pill bg-secondary transition-[width]" style={{ width: `${w}%` }} />
+      </div>
+    </div>
+  );
+}
+
 export default function ReportsPage() {
   const { data, ready } = useApp();
   const [period, setPeriod] = useState<Period>("month");
+  const today = todayIso();
 
   const unit = data?.medicationProfile?.formulation === "tablet" ? "tablet" : "mL";
   const unitLabel = unit === "mL" ? "میلی‌لیتر" : "قرص";
-
-  const from = period === "week" ? addDaysIso(todayIso(), -6) : period === "month" ? addDaysIso(todayIso(), -29) : "0000-01-01";
+  const from = period === "week" ? addDaysIso(today, -6) : period === "month" ? addDaysIso(today, -29) : "0000-01-01";
 
   const doseSeries: SeriesPoint[] = useMemo(() => {
     if (!data) return [];
@@ -67,11 +127,6 @@ export default function ReportsPage() {
     return data.symptomLogs.filter((s) => s.date >= from).map((s) => ({ date: s.date, value: s.craving }));
   }, [data, from]);
 
-  const sleepSeries: SeriesPoint[] = useMemo(() => {
-    if (!data) return [];
-    return data.symptomLogs.filter((s) => s.date >= from).map((s) => ({ date: s.date, value: s.sleepQuality }));
-  }, [data, from]);
-
   const stats = useMemo(() => {
     if (!data) return null;
     const logs = data.medicationLogs.filter((l) => l.date >= from);
@@ -85,9 +140,43 @@ export default function ReportsPage() {
         else if (e.status === "uncertain") uncertain++;
         else delayed++;
       }
-    const checkins = data.symptomLogs.filter((s) => s.date >= from).length;
-    return { days, taken, missed, uncertain, delayed, totalEntries, checkins };
+    const symptoms = data.symptomLogs.filter((s) => s.date >= from);
+    const avg = (pick: (s: (typeof symptoms)[number]) => number | null) => {
+      const vals = symptoms.map(pick).filter((v): v is number => v !== null);
+      return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+    };
+    return {
+      days,
+      taken,
+      missed,
+      uncertain,
+      delayed,
+      totalEntries,
+      checkins: symptoms.length,
+      adherencePct: totalEntries > 0 ? Math.round((taken / totalEntries) * 100) : null,
+      calmPct: avg((s) => s.mood) === null ? null : Math.round(((avg((s) => s.mood) ?? 0) / 4) * 100),
+      sleepPct: avg((s) => s.sleepQuality) === null ? null : Math.round(((avg((s) => s.sleepQuality) ?? 0) / 4) * 100),
+      anxietyPct: avg((s) => s.anxiety) === null ? null : Math.round(100 - ((avg((s) => s.anxiety) ?? 0) / 4) * 100),
+      cravingPct: avg((s) => s.craving) === null ? null : Math.round(100 - ((avg((s) => s.craving) ?? 0) / 4) * 100),
+      cleanDays: logs.filter((l) => !l.entries.some((e) => e.status === "missed")).length,
+    };
   }, [data, from]);
+
+  // plan-level info intentionally not shown in reports (status lives on dashboard/profile)
+  const unitWord = unit === "mL" ? "میلی‌لیتر" : "میلی‌گرم";
+
+  // today's recorded dose vs prescribed (display only)
+  const todayLog = data?.medicationLogs.find((l) => l.date === today);
+  const todayAmount = todayLog?.entries.find((e) => e.status === "taken")?.actualAmount ?? null;
+  const prescribed = data?.medicationProfile?.prescribedDailyAmount ?? null;
+  const todayPct =
+    todayAmount && prescribed && parsePositiveDecimal(todayAmount, { allowZero: true }).ok && parsePositiveDecimal(prescribed, { allowZero: true }).ok
+      ? Math.round((Number(todayAmount) / Number(prescribed)) * 100)
+      : null;
+
+  const firstDate = data?.medicationLogs[0]?.date ?? data?.medicationProfile?.regimenStartDate ?? null;
+  const daysOnTrack = firstDate ? Math.max(1, daysBetweenIso(firstDate, today) + 1) : null;
+  const phasePct = firstDate ? Math.min(100, Math.round((daysOnTrack! / 90) * 100)) : null;
 
   if (!ready) return <PageLoading />;
 
@@ -98,42 +187,40 @@ export default function ReportsPage() {
     const rows: string[][] = [["date", "type", "item", "value", "unit", "status"]];
     for (const l of data.medicationLogs)
       for (const e of l.entries)
-        rows.push([
-          l.date,
-          "medication",
-          `slot_${e.slotIndex}`,
-          e.actualAmount ?? "",
-          unit === "mL" ? "mL" : "tablet",
-          e.status,
-        ]);
+        rows.push([l.date, "medication", `slot_${e.slotIndex}`, e.actualAmount ?? "", unit === "mL" ? "mL" : "tablet", e.status]);
     for (const s of data.symptomLogs) {
       rows.push([s.date, "symptom", "sleepQuality", s.sleepQuality === null ? "" : String(s.sleepQuality), "0-4", s.unsure.includes("sleepQuality") ? "unsure" : ""]);
       rows.push([s.date, "symptom", "craving", s.craving === null ? "" : String(s.craving), "0-4", s.unsure.includes("craving") ? "unsure" : ""]);
       rows.push([s.date, "symptom", "mood", s.mood === null ? "" : String(s.mood), "0-4", s.unsure.includes("mood") ? "unsure" : ""]);
     }
-    downloadCsv(`rasa-export-${todayIso()}.csv`, rows);
+    downloadCsv(`rasa-export-${today}.csv`, rows);
   };
 
-  const plan = data ? currentPlan(data.treatmentPlans) : null;
+  const periodLabel = period === "week" ? "۷ روز اخیر" : period === "month" ? "۳۰ روز اخیر" : "کل دوره";
 
   return (
-    <>
-      <PageHeader title="گزارش و روند درمان" subtitle="فقط از ثبت‌های خود شما ساخته می‌شود" />
-
-      <div className="hero-card mb-4 p-5">
-        <h2 className="t-headline-sm text-white">
-          {stats && stats.taken > 0
-            ? "روند ثبت‌های شما در جریان است"
-            : "هنوز داده‌ای برای روند نداریم"}
-        </h2>
+    <div className="flex flex-col gap-4">
+      {/* ---- dark hero (approved design) ---- */}
+      <section className="hero-card p-5">
+        <span className="flex h-10 w-10 items-center justify-center rounded-card bg-white/15 text-white">
+          <Icon name="leaf" size={20} />
+        </span>
+        <span className="chip mt-3 bg-white/15 text-white">تحلیل روند ثبت‌های شما</span>
+        <h1 className="t-headline-md mt-2 text-white">روند درمان و مسیر آرامش</h1>
         <p className="t-body-md mt-1 text-white/80">
-          {plan
-            ? `برنامه فعال: ${plan.title} — وضعیت: ${PLAN_STATUS_LABELS[plan.status]}`
-            : "برنامه فعالی ثبت نشده است."}
+          همهٔ نمودارها فقط از ثبت‌های همین دستگاه ساخته می‌شوند — برای یک نگاهِ آماده
+          پیش از هر ویزیت.
         </p>
-      </div>
+        {daysOnTrack !== null ? (
+          <span className="chip mt-3 bg-white/15 text-white">
+            <Icon name="calendar" size={12} />
+            {daysOnTrack.toLocaleString("fa-IR")} روز از اولین ثبت
+          </span>
+        ) : null}
+      </section>
 
-      <div className="mb-4 grid grid-cols-3 rounded-pill bg-surface-container p-1">
+      {/* ---- period switch ---- */}
+      <div className="grid grid-cols-3 rounded-pill bg-surface-container p-1">
         {(
           [
             { id: "week", l: "هفته" },
@@ -151,26 +238,103 @@ export default function ReportsPage() {
         ))}
       </div>
 
-      {stats ? (
-        <div className="mb-4 grid grid-cols-2 gap-3">
-          {[
-            { label: "روزهای دارای ثبت", value: stats.days.toLocaleString("fa-IR") },
-            { label: "نوبت‌های مصرف‌شده", value: stats.taken.toLocaleString("fa-IR") },
-            { label: "ثبت‌نشده", value: stats.missed.toLocaleString("fa-IR") },
-            { label: "نامطمئن", value: stats.uncertain.toLocaleString("fa-IR") },
-            { label: "چک‌این‌ها", value: stats.checkins.toLocaleString("fa-IR") },
-            { label: "با تأخیر", value: stats.delayed.toLocaleString("fa-IR") },
-          ].map((s) => (
-            <Card key={s.label} className="!p-3 text-center">
-              <p className="t-headline-md text-on-surface">{s.value}</p>
-              <p className="t-label-sm text-on-surface-variant">{s.label}</p>
-            </Card>
-          ))}
+      {/* ---- rings + phase ---- */}
+      <section className="card p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="t-title-md text-on-surface">افق زمان و پیشرفت برنامه</h2>
+          <span className="chip bg-surface-container-high text-on-surface-variant">{periodLabel}</span>
         </div>
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+          <Ring
+            pct={stats?.adherencePct ?? null}
+            value={stats?.adherencePct !== null && stats?.adherencePct !== undefined ? `${stats.adherencePct.toLocaleString("fa-IR")}٪` : "—"}
+            label="انطباق ثبت با برنامه (سهم نوبت‌های «مصرف شد»)"
+          />
+          <Ring
+            pct={todayPct}
+            value={todayAmount ? formatAmount(todayAmount, unit) : "—"}
+            label={`دوز ثبت‌شده امروز نسبت به مقدار تجویزی (${unitWord})`}
+          />
+        </div>
+
+        {phasePct !== null ? (
+          <div className="mt-4">
+            <div className="flex items-center justify-between t-label-md text-on-surface-variant">
+              <span>شروع</span>
+              <span>تثبیت</span>
+              <span>ادامهٔ مسیر</span>
+            </div>
+            <div className="mt-1.5 h-3 overflow-hidden rounded-pill bg-surface-container-highest">
+              <div className="h-full rounded-pill bg-primary" style={{ width: `${phasePct}%` }} />
+            </div>
+            <p className="t-label-sm mt-1.5 text-on-surface-variant">
+              پیشرفت زمانی از اولین ثبت (نمای زمانی — نه سنجش درمانی)
+            </p>
+          </div>
+        ) : null}
+
+        {stats && stats.totalEntries > 0 ? (
+          <div className="mt-3 flex items-center gap-2 rounded-card bg-secondary-container/40 p-3">
+            <Icon name="check" size={16} className="shrink-0 text-secondary" />
+            <p className="t-label-lg text-on-secondary-container">
+              در {stats.days.toLocaleString("fa-IR")} روز ثبت‌شدهٔ این بازه:{" "}
+              <b>{(stats.adherencePct ?? 0).toLocaleString("fa-IR")}٪ پایداری ثبت</b>
+            </p>
+          </div>
+        ) : null}
+      </section>
+
+      {/* ---- summary grid ---- */}
+      {stats && stats.days > 0 ? (
+        <section className="card p-4">
+          <div className="flex items-center justify-between">
+            <h2 className="t-title-md text-on-surface">خلاصه شاخص‌ها</h2>
+            <span className="chip bg-surface-container-high text-on-surface-variant">{periodLabel}</span>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {[
+              { icon: "users" as const, tone: "bg-secondary-container text-on-secondary-container", label: "مستمر", value: stats.days.toLocaleString("fa-IR"), sub: "روز همراهی فعال در برنامه" },
+              { icon: "shield" as const, tone: "bg-secondary-container text-on-secondary-container", label: "امن", value: stats.cleanDays.toLocaleString("fa-IR"), sub: "روز بدون ثبتِ نوبت ازدست‌رفته" },
+              { icon: "lock" as const, tone: "bg-surface-container-high text-on-surface", label: "مطمئن", value: "۱۰۰٪", sub: "داده‌ها فقط روی همین دستگاه" },
+              { icon: "leaf" as const, tone: "bg-rose-soft text-rose-ink", label: "آرام", value: stats.calmPct !== null ? `${stats.calmPct.toLocaleString("fa-IR")}٪` : "—", sub: "میانگین حال عمومی ثبت‌شده (۰–۴)" },
+            ].map((s) => (
+              <div key={s.label} className="rounded-card border border-surface-container-high p-3">
+                <div className="flex items-center justify-between">
+                  <span className={`flex h-8 w-8 items-center justify-center rounded-card ${s.tone}`}>
+                    <Icon name={s.icon} size={16} />
+                  </span>
+                  <span className="t-label-sm text-on-surface-variant">{s.label}</span>
+                </div>
+                <p className="t-headline-md mt-1.5 text-on-surface">{s.value}</p>
+                <p className="t-label-sm text-on-surface-variant">{s.sub}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       ) : null}
 
-      <Card className="mb-4">
-        <SectionTitle icon="chart">مقدار ثبت‌شده ({unitLabel})</SectionTitle>
+      {/* ---- symptom bars ---- */}
+      {stats && stats.checkins > 0 ? (
+        <section className="card p-4">
+          <div className="flex items-center justify-between">
+            <h2 className="t-title-md text-on-surface">پایش علائم و حالت جسمی</h2>
+            <span className="chip bg-surface-container-high text-on-surface-variant">میانگین چک‌این‌ها</span>
+          </div>
+          <div className="mt-3 space-y-2">
+            <MeasureBar icon="moon" title="کیفیت خواب شبانه" pct={stats.sleepPct} sub={stats.sleepPct !== null ? `${stats.sleepPct.toLocaleString("fa-IR")}٪ از مقیاس ۰–۴` : "—"} />
+            <MeasureBar icon="shield" title="مدیریت اضطراب" pct={stats.anxietyPct} sub={stats.anxietyPct !== null ? `${stats.anxietyPct.toLocaleString("fa-IR")}٪ آرامش نسبی` : "—"} />
+            <MeasureBar icon="zap" title="مدیریت میل به مصرف" pct={stats.cravingPct} sub={stats.cravingPct !== null ? `${stats.cravingPct.toLocaleString("fa-IR")}٪ مهار نسبی` : "—"} />
+          </div>
+          <p className="t-label-sm mt-2.5 text-on-surface-variant">
+            این درصدها فقط میانگین همان مقیاس ۰–۴ شما هستند — ابزار تشخیص یا شدت‌سنجی
+            بالینی نیستند.
+          </p>
+        </section>
+      ) : null}
+
+      {/* ---- dose chart ---- */}
+      <Card>
+        <SectionTitle icon="chart">{`نمودار ثبت مصرف (${periodLabel})`}</SectionTitle>
         {hasDoseData ? (
           <>
             <LineChart
@@ -180,7 +344,7 @@ export default function ReportsPage() {
                   ? [{ label: "برنامه", color: "#9acee1", points: plannedSeries }]
                   : []),
               ]}
-              yLabel={`واحد: ${unit === "mL" ? "میلی‌لیتر (mL)" : "قرص"} — خطِ «برنامه» فقط مقادیر ثبت‌شده در برنامه است`}
+              yLabel={`واحد: ${unitLabel} — خطِ «برنامه» فقط مقادیر ثبت‌شده در برنامه است`}
             />
             <p className="t-body-sm mt-2 text-on-surface-variant">
               روزهای بدون ثبت به‌عنوان «فقدان داده» نمایش داده می‌شوند (خط قطع می‌شود) و به معنی
@@ -192,8 +356,9 @@ export default function ReportsPage() {
         )}
       </Card>
 
-      <Card className="mb-4">
-        <SectionTitle icon="heart">حال عمومی و میل به مصرف (۰–۴)</SectionTitle>
+      {/* ---- mood/craving chart ---- */}
+      <Card>
+        <SectionTitle icon="heart">روند حال عمومی و میل به مصرف (۰–۴)</SectionTitle>
         {moodSeries.some((p) => p.value !== null) ? (
           <LineChart
             series={[
@@ -207,32 +372,33 @@ export default function ReportsPage() {
         )}
       </Card>
 
-      <Card className="mb-4">
-        <SectionTitle icon="clock">خواب (۰–۴)</SectionTitle>
-        {sleepSeries.some((p) => p.value !== null) ? (
-          <LineChart series={[{ label: "خواب", color: "#306576", points: sleepSeries }]} />
-        ) : (
-          <p className="t-body-md text-on-surface-variant">داده خوابی ثبت نشده است.</p>
-        )}
-      </Card>
-
-      <Card className="mb-4 no-print">
-        <SectionTitle icon="download">خروجی و چاپ</SectionTitle>
-        <div className="flex flex-wrap gap-2">
-          <Button variant="outline" size="sm" onClick={exportCsv}>
-            <Icon name="download" size={16} />
-            خروجی CSV (یونی‌کد)
-          </Button>
-          <Button variant="outline" size="sm" onClick={() => window.print()}>
-            <Icon name="print" size={16} />
-            نسخه چاپی / PDF
-          </Button>
+      {/* ---- export CTA (dark, like the design) ---- */}
+      <section className="no-print flex items-center justify-between gap-3 rounded-card bg-primary p-4">
+        <div>
+          <p className="t-title-md font-semibold text-on-primary">دریافت خروجی برای ویزیت پزشک</p>
+          <p className="t-label-md mt-0.5 text-on-primary/75">چاپ یا فایل CSV — فقط از داده‌های همین دستگاه</p>
         </div>
-        <p className="t-body-sm mt-2 text-on-surface-variant">
-          خروجی فقط از داده‌های همین دستگاه ساخته می‌شود؛ قبل از اشتراک‌گذاری، محرمانگی را
-          در نظر بگیرید.
-        </p>
-      </Card>
-    </>
+        <div className="flex shrink-0 gap-2">
+          <button
+            onClick={() => window.print()}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white transition-transform active:scale-95"
+            aria-label="نسخه چاپی / PDF"
+          >
+            <Icon name="print" size={18} />
+          </button>
+          <button
+            onClick={exportCsv}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white transition-transform active:scale-95"
+            aria-label="خروجی CSV"
+          >
+            <Icon name="download" size={18} />
+          </button>
+        </div>
+      </section>
+      <p className="t-label-md -mt-2 text-on-surface-variant">
+        یادآوری: این خروجی صرفاً ثبت شخصی شماست و جایگزین معاینه، تشخیص یا نسخه پزشک
+        نیست؛ برای گفتگوی حضوری با درمانگر طراحی شده است.
+      </p>
+    </div>
   );
 }

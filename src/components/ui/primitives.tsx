@@ -1,12 +1,97 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Icon } from "@/components/ui/icons";
+import { Icon, type IconName } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { PLAN_STATUS_LABELS, PLAN_STATUS_TONES } from "@/lib/plan/status";
 import type { PlanStatus } from "@/types";
 
 export { Button } from "@/components/ui/button";
+
+/* ---------------------- Design-system section card ------------------------ */
+
+/**
+ * Card with an icon chip, title, optional subtitle and trailing chip —
+ * matches the approved screen layout (icon chip at start, meta chip at end).
+ */
+export function SectionCard({
+  icon,
+  iconTone = "bg-surface-container-high text-on-surface",
+  title,
+  subtitle,
+  trailing,
+  children,
+  className = "",
+}: {
+  icon: IconName;
+  iconTone?: string;
+  title: string;
+  subtitle?: string;
+  trailing?: ReactNode;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <section className={`card p-4 ${className}`}>
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex items-center gap-2.5">
+          <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-card ${iconTone}`}>
+            <Icon name={icon} size={19} />
+          </span>
+          <div>
+            <h2 className="t-title-md text-on-surface">{title}</h2>
+            {subtitle ? <p className="t-label-md text-on-surface-variant">{subtitle}</p> : null}
+          </div>
+        </div>
+        {trailing}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+/** Key–value row with a leading icon chip (profile/plan summary rows). */
+export function InfoRow({
+  icon,
+  label,
+  value,
+  trailing,
+  href,
+}: {
+  icon: IconName;
+  label: string;
+  value?: string;
+  trailing?: ReactNode;
+  href?: string;
+}) {
+  const inner = (
+    <span className="flex items-center gap-2.5">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-card bg-surface-container-high text-on-surface">
+        <Icon name={icon} size={16} />
+      </span>
+      <span>
+        <span className="t-label-md block text-on-surface-variant">{label}</span>
+        {value ? <span className="t-label-lg block font-semibold text-on-surface">{value}</span> : null}
+      </span>
+    </span>
+  );
+  const cls =
+    "flex w-full items-center justify-between rounded-card bg-surface-container-low px-3 py-2.5 text-start";
+  if (href) {
+    return (
+      <a href={href} className={`${cls} transition-transform active:scale-[0.99]`}>
+        {inner}
+        {trailing ?? <Icon name="chevron-left" size={15} className="text-on-surface-variant" />}
+      </a>
+    );
+  }
+  return (
+    <div className={cls}>
+      {inner}
+      {trailing}
+    </div>
+  );
+}
 
 /* ---------------------------------- Card ---------------------------------- */
 

@@ -1,57 +1,71 @@
 "use client";
 
-import { useEffect, useState } from "react";
+/**
+ * App shell — header and bottom navigation following the approved design:
+ *  - header: starburst mark (visual left), centered stack (امن badge, brand,
+ *    per-page subtitle), leaf action (visual right);
+ *  - bottom nav: 4 light tabs — خانه / ثبت مصرف / گزارش و روند / پروفایل
+ *    (برنامه و ایمنی stay reachable from dashboard + profile content links).
+ */
+
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon, type IconName } from "@/components/ui/icons";
-import { faDate } from "@/lib/dates";
 import { useApp } from "@/features/app-store";
-import { ErrorBox } from "@/components/ui/primitives";
+import { ErrorBox, PageLoading } from "@/components/ui/primitives";
+
+const PAGE_SUBTITLES: { prefix: string; label: string }[] = [
+  { prefix: "/medication", label: "ثبت مصرف" },
+  { prefix: "/reports", label: "گزارش و روند درمان" },
+  { prefix: "/settings", label: "پروفایل" },
+  { prefix: "/plan", label: "برنامه درمان" },
+  { prefix: "/safety", label: "ایمنی و پشتیبانی" },
+  { prefix: "/checkin", label: "چک‌این روزانه" },
+  { prefix: "/", label: "داشبورد روزانه" },
+];
 
 const NAV: { href: string; label: string; icon: IconName }[] = [
   { href: "/", label: "خانه", icon: "home" },
-  { href: "/medication", label: "دارو", icon: "pill" },
-  { href: "/plan", label: "برنامه", icon: "plan" },
-  { href: "/reports", label: "گزارش", icon: "chart" },
-  { href: "/settings", label: "تنظیمات", icon: "gear" },
+  { href: "/medication", label: "ثبت مصرف", icon: "pill" },
+  { href: "/reports", label: "گزارش و روند", icon: "chart" },
+  { href: "/settings", label: "پروفایل", icon: "user" },
 ];
 
-function RasaLogo({ compact = false }: { compact?: boolean }) {
-  return (
-    <span className="flex items-center gap-2">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/logo.svg" alt="لوگوی رسا" className="h-9 w-9 rounded-lg" />
-      <span className="flex flex-col leading-tight">
-        <span className="t-label-lg text-on-surface">
-          رسا <span className="ltr-inline text-on-surface-variant">| RASA</span>
-        </span>
-        {compact ? null : (
-          <span className="t-label-sm text-on-surface-variant">همراه مسیر پایدار بهبود</span>
-        )}
-      </span>
-    </span>
-  );
+function subtitleFor(pathname: string): string {
+  return PAGE_SUBTITLES.find((p) => pathname.startsWith(p.prefix))?.label ?? "داشبورد روزانه";
 }
 
-function Header() {
-  const [today, setToday] = useState<string | null>(null);
-  useEffect(() => {
-    setToday(new Date().toISOString().slice(0, 10));
-  }, []);
+function Header({ pathname }: { pathname: string }) {
   return (
-    <header className="no-print fixed inset-x-0 top-0 z-40 bg-surface/85 pt-safe backdrop-blur-xl shadow-[0_2px_12px_rgba(19,78,94,0.05)]">
-      <div className="mx-auto flex h-16 max-w-xl items-center justify-between px-margin-mobile md:px-margin">
-        <Link href="/" aria-label="خانه — رسا">
-          <RasaLogo />
+    <header className="no-print fixed inset-x-0 top-0 z-40 border-b border-outline-variant/40 bg-surface/90 pt-safe backdrop-blur-xl">
+      <div className="mx-auto flex h-[64px] max-w-xl items-center justify-between px-margin-mobile md:px-margin">
+        {/* visual right (RTL start): leaf action */}
+        <Link
+          href="/reports"
+          aria-label="گزارش و روند درمان"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary-container/70 text-on-secondary-container transition-transform active:scale-95"
+        >
+          <Icon name="leaf" size={19} />
         </Link>
-        {today ? (
-          <span className="chip bg-surface-container-high text-on-surface">
-            <Icon name="clock" size={14} />
-            {faDate(today, { withWeekday: true })}
+
+        {/* centered brand stack */}
+        <div className="flex flex-col items-center leading-tight">
+          <span className="mb-0.5 flex items-center gap-1 rounded-pill bg-secondary-container/60 px-2 py-px text-on-secondary-container">
+            <Icon name="lock" size={11} />
+            <span className="t-label-sm font-semibold">امن</span>
           </span>
-        ) : (
-          <span className="chip bg-surface-container-high text-on-surface-variant">…</span>
-        )}
+          <span className="t-title-md font-bold text-on-surface">
+            رسا <span className="ltr-inline text-on-surface-variant">| RASA</span>
+          </span>
+          <span className="t-label-sm text-on-surface-variant">{subtitleFor(pathname)}</span>
+        </div>
+
+        {/* visual left (RTL end): starburst mark */}
+        <Link href="/" aria-label="خانه — رسا" className="transition-transform active:scale-95">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.svg" alt="" className="h-9 w-9" />
+        </Link>
       </div>
     </header>
   );
@@ -61,10 +75,10 @@ function BottomNav() {
   const pathname = usePathname();
   return (
     <nav
-      className="no-print fixed inset-x-0 bottom-0 z-40 flex justify-center pb-safe"
+      className="no-print fixed inset-x-0 bottom-0 z-40 border-t border-outline-variant/40 bg-surface/95 pb-safe backdrop-blur-xl"
       aria-label="ناوبری اصلی"
     >
-      <div className="mb-3 flex items-center gap-1 rounded-pill bg-inverse-surface px-2 py-1.5 shadow-[0_8px_24px_rgba(19,78,94,0.28)]">
+      <div className="mx-auto flex max-w-xl items-stretch justify-around px-2 py-1.5">
         {NAV.map((item) => {
           const active =
             item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -73,14 +87,18 @@ function BottomNav() {
               key={item.href}
               href={item.href}
               aria-current={active ? "page" : undefined}
-              className={`flex min-w-14 flex-col items-center gap-0.5 rounded-pill px-3 py-1.5 transition-colors ${
-                active
-                  ? "bg-inverse-primary/20 text-inverse-primary"
-                  : "text-inverse-on-surface/70 hover:text-inverse-on-surface"
+              className={`flex min-w-16 flex-col items-center gap-1 rounded-card px-3 py-1.5 transition-colors ${
+                active ? "text-primary" : "text-on-surface-variant hover:text-on-surface"
               }`}
             >
-              <Icon name={item.icon} size={20} />
-              <span className="t-label-sm">{item.label}</span>
+              <span
+                className={`flex h-8 w-12 items-center justify-center rounded-full transition-colors ${
+                  active ? "bg-secondary-container/80 text-on-secondary-container" : ""
+                }`}
+              >
+                <Icon name={item.icon} size={20} />
+              </span>
+              <span className="t-label-sm font-medium">{item.label}</span>
             </Link>
           );
         })}
@@ -101,19 +119,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-dvh flex-col bg-surface">
-      <Header />
-      {!ready ? (
-        <main className="mx-auto w-full max-w-xl px-margin-mobile pt-24 pb-28">
-          <div className="card h-40 animate-pulse" aria-hidden="true" />
-        </main>
-      ) : (
-        <main className="mx-auto w-full max-w-xl px-margin-mobile pt-24 pb-32 md:px-margin">
-          {lastError && !dismissed ? (
-            <ErrorBox message={lastError} onClose={() => setDismissed(true)} />
-          ) : null}
-          {children}
-        </main>
-      )}
+      <Header pathname={pathname} />
+      <main className="mx-auto w-full max-w-xl flex-1 px-margin-mobile pt-[88px] pb-28 md:px-margin">
+        {!ready ? (
+          <PageLoading />
+        ) : (
+          <>
+            {lastError && !dismissed ? (
+              <ErrorBox message={lastError} onClose={() => setDismissed(true)} />
+            ) : null}
+            {children}
+          </>
+        )}
+      </main>
       <BottomNav />
     </div>
   );
