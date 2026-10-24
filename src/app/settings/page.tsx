@@ -491,7 +491,7 @@ export default function SettingsPage() {
           برنامه همراه درمان {APP_NAME} <span className="ltr-inline">({APP_NAME_LATIN})</span>
         </p>
         <p className="t-body-sm text-on-surface-variant">
-          نسخه ۰٫۲٫۰ — ابزار پیگیری شخصی؛ جایگزین درمان، تشخیص یا نسخه پزشک نیست.
+          نسخه ۱٫۰٫۰ — ابزار پیگیری شخصی؛ جایگزین درمان، تشخیص یا نسخه پزشک نیست.
         </p>
       </Card>
 

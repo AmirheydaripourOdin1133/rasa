@@ -66,5 +66,5 @@ hosting works only with a static export and blocks the future backend path. See
 
 ## License / status
 
-v0.2.0 — initial release candidate. Not a medical device; not for clinical decision
+**v1.0.0 — first public release.** Not a medical device; not for clinical decision
 making.

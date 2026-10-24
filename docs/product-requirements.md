@@ -1,7 +1,7 @@
 # Product Requirements — رسا | RASA (همراه درمان)
 
 **Product:** RASA — a Persian-first, RTL, mobile-web PWA for people on opioid agonist therapy (methadone) to *record and observe* their own treatment.
-**Version:** 0.1.0 (MVP)
+**Version:** 1.0.0 (first public release)
 **Status:** Implemented — demo mode + local persistence; optional backend (Supabase) authored but disabled.
 
 ---
