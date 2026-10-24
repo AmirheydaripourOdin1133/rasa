@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# رسا | RASA — همراه درمان
 
-## Getting Started
+Persian-first, RTL, installable web app (PWA) that helps people on **methadone
+treatment** record and observe their own therapy — medication logs (tablets or oral
+liquid), daily symptom check-ins, versioned treatment plans with explicit clinician
+authorization, trend reports in the Jalali calendar, and neutral safety guidance.
 
-First, run the development server:
+> **این اپ ثبت‌کننده است، نه تجویزکننده.** هیچ‌گاه دوز پیشنهاد نمی‌دهد، برنامه کاهش
+> نمی‌سازد و تشخیص نمی‌دهد — تمام تصمیم‌های درمانی با درمانگر شماست.
+
+## Highlights
+
+- **Persian-first:** RTL layout, Jalali dates («شنبه، ۲ آبان ۱۴۰۵»), Persian numerals
+  via the locally-bundled **PeydaFaNum** typeface — zero runtime network requests.
+- **Local-first privacy:** no account, no analytics; data stays on the device in
+  separate real/demo buckets (`localStorage`), with export + full wipe.
+- **Medical-safety boundaries:** never generates tapers or dose advice; plan
+  authorization is explicit (named clinician recorded by the user); review-overdue is
+  a display flag — the app never auto-advances a plan. See
+  [`docs/clinical-safety-boundaries.md`](docs/clinical-safety-boundaries.md).
+- **Exact medication math:** BigInt fixed-point (scale 4) unit conversions from
+  *labelled* values only; prescribed vs actual intake stored separately.
+- **Versioned plans + audit trail:** full event history for every mutation.
+- **PWA:** installable, offline shell, reminders with lock-screen privacy.
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000 — onboarding → «ورود با داده نمایشی»
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Quality gates: `npm run lint` · `npm run typecheck` · `npm test` (76 tests) ·
+`npm run build` — all green for this release.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Documentation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Doc | Contents |
+|---|---|
+| [`docs/product-requirements.md`](docs/product-requirements.md) | Problem, principles, MVP scope, flows, success criteria |
+| [`docs/clinical-safety-boundaries.md`](docs/clinical-safety-boundaries.md) | Hard prohibitions, escalation criteria, copy rules |
+| [`docs/clinical-evidence.md`](docs/clinical-evidence.md) | Sources consulted (WHO 2025 update; CMAJ 2024 OUD guideline; BAP consensus; SAMHSA TIP 63 access note) |
+| [`docs/design-system.md`](docs/design-system.md) | Stitch-derived M3 tokens, type scale, RTL/numeral rules |
+| [`docs/data-model.md`](docs/data-model.md) | TS domain + PostgreSQL schema, plan state machine |
+| [`docs/security-model.md`](docs/security-model.md) | Data minimization, bucket separation, backend posture, secrets hygiene |
+| [`docs/setup-and-testing.md`](docs/setup-and-testing.md) | Install, quality gates, browser/PWA checklists, troubleshooting |
+| [`supabase/`](supabase/) | Optional backend: RLS-protected schema + synthetic seed (disabled by default) |
 
-## Learn More
+## Modes
 
-To learn more about Next.js, take a look at the following resources:
+- **User mode** — real records, local only.
+- **Demo mode** — deterministic synthetic data, visibly badged, isolated bucket.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Next.js 15 (App Router) · TypeScript strict · Tailwind CSS v4 (M3 token system from
+the approved Stitch design) · Vitest + jsdom · local PeydaFaNum font · optional
+Supabase (schema/RLS authored, integration intentionally unwired).
 
-## Deploy on Vercel
+## Deployment (short version)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Any Node.js ≥ 18 host: `npm run build && npm start` behind HTTPS (PWA requirement) —
+e.g. a small VPS (PM2 + Nginx + Let's Encrypt) or an Iranian Node PaaS. Shared PHP
+hosting works only with a static export and blocks the future backend path. Details in
+[`docs/setup-and-testing.md`](docs/setup-and-testing.md).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License / status
+
+MVP v0.1.0 — demo/evaluation build. Not a medical device; not for clinical decision
+making.
