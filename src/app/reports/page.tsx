@@ -29,32 +29,35 @@ function downloadCsv(filename: string, rows: string[][]): void {
   URL.revokeObjectURL(url);
 }
 
-/** Small donut ring (display-only percentage). */
-function Ring({ pct, label, value }: { pct: number | null; label: string; value: string }) {
-  const R = 26;
+/** Small donut ring (display-only percentage). Value text lives below the ring so numbers always fit. */
+function Ring({ pct, inside, title, sub }: { pct: number | null; inside: string; title: string; sub: string }) {
+  const R = 22;
   const C = 2 * Math.PI * R;
   const off = pct === null ? C : C * (1 - Math.min(100, Math.max(0, pct)) / 100);
   return (
-    <div className="flex flex-1 items-center gap-3 rounded-card bg-surface-container-low p-3">
-      <svg width="64" height="64" viewBox="0 0 64 64" className="shrink-0" aria-hidden="true">
-        <circle cx="32" cy="32" r={R} fill="none" stroke="var(--color-surface-container-highest)" strokeWidth="7" />
+    <div className="flex flex-1 items-center gap-3 rounded-card bg-surface-container-low p-2.5">
+      <svg width="56" height="56" viewBox="0 0 56 56" className="shrink-0" aria-hidden="true">
+        <circle cx="28" cy="28" r={R} fill="none" stroke="var(--color-surface-container-highest)" strokeWidth="5.5" />
         <circle
-          cx="32"
-          cy="32"
+          cx="28"
+          cy="28"
           r={R}
           fill="none"
           stroke="var(--color-secondary)"
-          strokeWidth="7"
+          strokeWidth="5.5"
           strokeLinecap="round"
           strokeDasharray={C}
           strokeDashoffset={off}
-          transform="rotate(-90 32 32)"
+          transform="rotate(-90 28 28)"
         />
-        <text x="32" y="37" textAnchor="middle" className="fill-current text-on-surface" fontSize="13" fontWeight="700">
-          {value}
+        <text x="28" y="32" textAnchor="middle" fontSize="12" fontWeight="700" className="fill-current text-on-surface">
+          {inside}
         </text>
       </svg>
-      <p className="t-label-md text-on-surface-variant">{label}</p>
+      <div className="min-w-0">
+        <p className="t-label-lg truncate font-semibold text-on-surface">{title}</p>
+        <p className="t-label-sm text-on-surface-variant">{sub}</p>
+      </div>
     </div>
   );
 }
@@ -81,7 +84,7 @@ function MeasureBar({
         </span>
         <span className="t-label-md text-on-surface-variant">{sub}</span>
       </div>
-      <div className="mt-2 h-2.5 overflow-hidden rounded-pill bg-surface-container-highest">
+      <div className="mt-2 h-2 overflow-hidden rounded-pill bg-surface-container-highest">
         <div className="h-full rounded-pill bg-secondary transition-[width]" style={{ width: `${w}%` }} />
       </div>
     </div>
@@ -163,8 +166,6 @@ export default function ReportsPage() {
   }, [data, from]);
 
   // plan-level info intentionally not shown in reports (status lives on dashboard/profile)
-  const unitWord = unit === "mL" ? "میلی‌لیتر" : "میلی‌گرم";
-
   // today's recorded dose vs prescribed (display only)
   const todayLog = data?.medicationLogs.find((l) => l.date === today);
   const todayAmount = todayLog?.entries.find((e) => e.status === "taken")?.actualAmount ?? null;
@@ -247,13 +248,15 @@ export default function ReportsPage() {
         <div className="mt-3 flex flex-col gap-2 sm:flex-row">
           <Ring
             pct={stats?.adherencePct ?? null}
-            value={stats?.adherencePct !== null && stats?.adherencePct !== undefined ? `${stats.adherencePct.toLocaleString("fa-IR")}٪` : "—"}
-            label="انطباق ثبت با برنامه (سهم نوبت‌های «مصرف شد»)"
+            inside={stats?.adherencePct !== null && stats?.adherencePct !== undefined ? `${stats.adherencePct.toLocaleString("fa-IR")}٪` : "—"}
+            title="انطباق ثبت با برنامه"
+            sub="سهم نوبت‌های «مصرف شد» در این بازه"
           />
           <Ring
             pct={todayPct}
-            value={todayAmount ? formatAmount(todayAmount, unit) : "—"}
-            label={`دوز ثبت‌شده امروز نسبت به مقدار تجویزی (${unitWord})`}
+            inside={todayPct !== null ? `${todayPct.toLocaleString("fa-IR")}٪` : "—"}
+            title={todayAmount ? formatAmount(todayAmount, unit) : "—"}
+            sub="دوز ثبت‌شدهٔ امروز نسبت به مقدار تجویزی"
           />
         </div>
 
@@ -264,7 +267,7 @@ export default function ReportsPage() {
               <span>تثبیت</span>
               <span>ادامهٔ مسیر</span>
             </div>
-            <div className="mt-1.5 h-3 overflow-hidden rounded-pill bg-surface-container-highest">
+            <div className="mt-1.5 h-2 overflow-hidden rounded-pill bg-surface-container-highest">
               <div className="h-full rounded-pill bg-primary" style={{ width: `${phasePct}%` }} />
             </div>
             <p className="t-label-sm mt-1.5 text-on-surface-variant">

@@ -61,10 +61,10 @@ Supabase (schema/RLS authored, integration intentionally unwired).
 
 Any Node.js ≥ 18 host: `npm run build && npm start` behind HTTPS (PWA requirement) —
 e.g. a small VPS (PM2 + Nginx + Let's Encrypt) or an Iranian Node PaaS. Shared PHP
-hosting works only with a static export and blocks the future backend path. Details in
-[`docs/setup-and-testing.md`](docs/setup-and-testing.md).
+hosting works only with a static export and blocks the future backend path. See
+[`deploy/DEPLOY-fa.md`](deploy/DEPLOY-fa.md) for the full step-by-step guide.
 
 ## License / status
 
-MVP v0.1.0 — demo/evaluation build. Not a medical device; not for clinical decision
+v0.2.0 — initial release candidate. Not a medical device; not for clinical decision
 making.
