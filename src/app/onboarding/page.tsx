@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useApp } from "@/features/app-store";
 import { Button, Chip, Field, TextField, NumberField, TimeField, ToggleSwitch, SelectField, ErrorBox, Card } from "@/components/ui/primitives";
+import { JalaliDatePicker } from "@/components/ui/jalali-date-picker";
 import { Icon } from "@/components/ui/icons";
 import { uid } from "@/lib/store/demo-data";
 import { readDraft, writeDraft, clearDraft } from "@/lib/store/local-store";
@@ -28,13 +29,13 @@ interface Draft {
   strength: string;
   prescribed: string;
   times: string[];
-  regimenStart: string;
+  regimenStart: string | null;
   hasPlan: boolean | null;
   planTitle: string;
   planSource: PlanSource;
   authorizedBy: string;
-  effectiveDate: string;
-  nextReviewDate: string;
+  effectiveDate: string | null;
+  nextReviewDate: string | null;
   planNote: string;
   checkin: boolean;
   checkinTime: string;
@@ -292,16 +293,16 @@ export default function OnboardingPage() {
         <Field label="ساعت مصرف">
           <TimeField value={draft.times[0] ?? "08:00"} onChange={(v) => set("times", [v])} />
         </Field>
-        <Field label="شروع این رژیم (اختیاری)">
-          <input
-            type="date"
-            value={draft.regimenStart}
-            onChange={(e) => set("regimenStart", e.target.value)}
-            className="num-input w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-3 py-2.5 t-body-md"
-          />
-        </Field>
+        <JalaliDatePicker
+          label="شروع این رژیم (اختیاری)"
+          hint="تقویم شمسی — امروز یا قبل از امروز"
+          value={draft.regimenStart}
+          onChange={(iso) => set("regimenStart", iso)}
+          max={todayIso()}
+          placeholder="مثلاً: ۱۴۰۵/۰۶/۱۵"
+        />
         {!canNext ? (
-          <p className="t-body-sm mb-3 text-tertiary">
+          <p className="t-body-sm mt-3 text-tertiary">
             برای ادامه، نام محصول و مقدار طبق بسته لازم است.
           </p>
         ) : null}
@@ -349,13 +350,21 @@ export default function OnboardingPage() {
                 <TextField value={draft.authorizedBy} onChange={(v) => set("authorizedBy", v)} placeholder="مثلاً: دکتر ..." />
               </Field>
             ) : null}
-            <div className="grid grid-cols-2 gap-3">
-              <Field label="تاریخ اجرا">
-                <input type="date" value={draft.effectiveDate} onChange={(e) => set("effectiveDate", e.target.value)} className="num-input w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-3 py-2.5 t-body-md" />
-              </Field>
-              <Field label="مرور بعدی">
-                <input type="date" value={draft.nextReviewDate} onChange={(e) => set("nextReviewDate", e.target.value)} className="num-input w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-3 py-2.5 t-body-md" />
-              </Field>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <JalaliDatePicker
+                label="تاریخ اجرا"
+                value={draft.effectiveDate}
+                onChange={(iso) => set("effectiveDate", iso)}
+                placeholder="مثلاً: ۱۴۰۵/۰۸/۰۱"
+              />
+              <JalaliDatePicker
+                label="مرور بعدی"
+                hint="تاریخ مرور بعدی با درمانگر — امروز یا بعد از امروز"
+                value={draft.nextReviewDate}
+                onChange={(iso) => set("nextReviewDate", iso)}
+                min={todayIso()}
+                placeholder="مثلاً: ۱۴۰۵/۱۱/۱۵"
+              />
             </div>
             <Field label="نکته برنامه (اختیاری)">
               <TextField value={draft.planNote} onChange={(v) => set("planNote", v)} placeholder="خلاصه دستور درمانگر" />

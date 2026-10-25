@@ -1,70 +1,100 @@
-# رسا | RASA — همراه درمان
+<div dir="rtl">
 
-Persian-first, RTL, installable web app (PWA) that helps people on **methadone
-treatment** record and observe their own therapy — medication logs (tablets or oral
-liquid), daily symptom check-ins, versioned treatment plans with explicit clinician
-authorization, trend reports in the Jalali calendar, and neutral safety guidance.
+# رسا | RASA — همراه مسیر پایدار بهبود
 
-> **این اپ ثبت‌کننده است، نه تجویزکننده.** هیچ‌گاه دوز پیشنهاد نمی‌دهد، برنامه کاهش
-> نمی‌سازد و تشخیص نمی‌دهد — تمام تصمیم‌های درمانی با درمانگر شماست.
+![Version](https://img.shields.io/badge/نسخه-۱٫۰٫۰-003644) ![Next.js](https://img.shields.io/badge/Next.js-15-000000) ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6) ![Tests](https://img.shields.io/badge/تست‌ها-۹۶%20✓-2E9E5B) ![PWA](https://img.shields.io/badge/PWA-نصب‌پذیر-5B21B6)
 
-## Highlights
+**رسا** یک اپلیکیشن وب فارسی، راست‌به‌چپ و نصب‌پذیر (PWA) است که به افراد تحت **درمان با متادون** کمک می‌کند مسیر درمان خود را دقیق ثبت و مشاهده کنند: ثبت مصرف روزانه (قرص یا شربت)، چک‌این روزانهٔ حال و علائم، برنامهٔ درمان نسخه‌بندی‌شده با تأیید صریح درمانگر، گزارش و نمودار روند در **تقویم شمسی**، و راهنمای ایمنِ بی‌طرف.
 
-- **Persian-first:** RTL layout, Jalali dates («شنبه، ۲ آبان ۱۴۰۵»), Persian numerals
-  via the locally-bundled **PeydaFaNum** typeface — zero runtime network requests.
-- **Local-first privacy:** no account, no analytics; data stays on the device in
-  separate real/demo buckets (`localStorage`), with export + full wipe.
-- **Medical-safety boundaries:** never generates tapers or dose advice; plan
-  authorization is explicit (named clinician recorded by the user); review-overdue is
-  a display flag — the app never auto-advances a plan. See
-  [`docs/clinical-safety-boundaries.md`](docs/clinical-safety-boundaries.md).
-- **Exact medication math:** BigInt fixed-point (scale 4) unit conversions from
-  *labelled* values only; prescribed vs actual intake stored separately.
-- **Versioned plans + audit trail:** full event history for every mutation.
-- **PWA:** installable, offline shell, reminders with lock-screen privacy.
+> ⚕️ **رسا ثبت‌کننده است، نه تجویزکننده.**
+> هیچ‌گاه دوز پیشنهاد نمی‌دهد، برنامهٔ کاهش نمی‌سازد، دوز جبرانی توصیه نمی‌کند و تشخیص نمی‌دهد.
+> تمام تصمیم‌های درمانی فقط با درمانگر شماست. این اپ جایگزین معاینه، تشخیص یا نسخهٔ پزشک نیست.
 
-## Quick start
+---
+
+## ✨ ویژگی‌های کلیدی
+
+| | |
+|---|---|
+| 🗓 **تقویم یکپارچهٔ شمسی** | تمام تاریخ‌ها — نمایش، انتخاب، گزارش و نمودار — فقط شمسی؛ با ارقام فارسی («شنبه، ۲ آبان ۱۴۰۵»). هیچ تقویم میلادی در رابط کاربری دیده نمی‌شود. |
+| 🔤 **فونت PeydaFaNum** | فونت فارسی باندل‌شده به‌صورت لوکال؛ ارقام لاتین هم به‌صورت فارسی رندر می‌شوند — بدون هیچ درخواست شبکه در زمان اجرا. |
+| 🔒 **اولویت با حریم خصوصی** | بدون حساب کاربری، بدون آنالیتیکس. داده‌ها فقط روی دستگاه شما (localStorage) در دو مخزن جداشدهٔ واقعی/نمایشی می‌ماند؛ خروجی گرفتن و پاک‌سازی کامل همیشه در دسترس است. |
+| 🛡 **مرزهای ایمنی درمانی** | جدایی کامل «تجویز درمانگر» از «مصرف واقعی»؛ نمایش برنامه فقط با تأیید ثبت‌شده؛ پرچم «مرور عقب‌افتاده» صرفاً نمایشی است — اپ هرگز برنامه را خودکار جلو نمی‌برد. |
+| 🧮 **ریاضی دقیق دارو** | تبدیل واحدها (قرص ↔ میلی‌گرم، میلی‌لیتر ↔ میلی‌گرم) با اعداد صحیح بزرگ (BigInt، مقیاس ۴) فقط بر اساس مقادیر روی بسته. |
+| 📈 **گزارش و روند** | نمودارهای SVG سبک با محور شمسی؛ دادهٔ ثبت‌نشده هرگز صفر فرض نمی‌شود و شکاف واقعی نمایش داده می‌شود؛ خروجی CSV و نسخهٔ چاپی برای ویزیت. |
+| 📲 **نصب‌پذیر (PWA)** | نصب روی اندروید/دسکتاپ با یک لمس، راهنمای «افزودن به صفحهٔ اصلی» روی iOS، پوستهٔ آفلاین، و میان‌برهای «ثبت دارو» و «چک‌این». |
+| 🔔 **یادآور با احترام به خصوصیت** | یادآورها عمداً بدون نام دارو نمایش داده می‌شوند تا حریم خصوصی روی قفل صفحه حفظ شود. |
+| 🧪 **حالت نمایشی** | ورود سریع با دادهٔ نمایشی قطعی و جدا از دادهٔ واقعی، با نشان «دمو». |
+
+## 🚀 اجرای سریع
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000 — onboarding → «ورود با داده نمایشی»
+npm run dev      # http://localhost:3000
 ```
 
-Quality gates: `npm run lint` · `npm run typecheck` · `npm test` (76 tests) ·
-`npm run build` — all green for this release.
+اولین اجرا شما را به **تنظیم اولیه (onboarding)** می‌برد؛ برای دیدن سریع امکانات، از مسیر تنظیمات وارد **«ورود با داده نمایشی»** شوید.
 
-## Documentation
+بررسی کیفیت این نسخه — همگی سبز:
 
-| Doc | Contents |
+```bash
+npm run lint         # ESLint — بدون خطا
+npm run typecheck    # TypeScript strict — بدون خطا
+npm test             # ۹۶ تست واحد — سبز
+npm run build        # بیلد تولیدی — موفق
+```
+
+## 📲 نصب روی گوشی (PWA)
+
+- **اندروید (کروم):** پس از باز کردن سایت، بنر «نصب رسا روی گوشی» را ببینید و «نصب» را بزنید؛ یا از منوی کروم ← «Add to Home screen».
+- **آیفون (سافاری):** دکمهٔ «اشتراک‌گذاری» ← «افزودن به صفحهٔ اصلی» ← تأیید «رسا». (سافاری رویداد نصب خودکار ندارد؛ اپ راهنمای داخلی نشان می‌دهد.)
+- **دسکتاپ:** آیکون نصب در نوار آدرس کروم/اج.
+- نصب به **HTTPS** نیاز دارد (پیش‌نیاز PWA).
+
+## 🛡 مرزهای ایمنی (خلاصه)
+
+- ساخت یا خودکارکردن هیچ برنامهٔ کاهش دوز (taper) ممنوع است؛ فقط برنامه‌ای که کاربر از درمانگر خود ثبت می‌کند نمایش داده می‌شود.
+- توصیهٔ دوز، دوز جبرانی و تشخیص وجود ندارد؛ پیام‌های اورژانس (۱۱۵) همیشه در دسترس و برجسته است.
+- تأیید برنامه صریح است (نام تأییدکننده به‌عنوان متن ثبت می‌شود) و تاریخ «مرور بعدی» عقب بیفتد فقط هشدار نمایشی می‌دهد.
+
+جزئیات کامل: [`docs/clinical-safety-boundaries.md`](docs/clinical-safety-boundaries.md)
+
+## 🗂 مستندات
+
+| سند | محتوا |
 |---|---|
-| [`docs/product-requirements.md`](docs/product-requirements.md) | Problem, principles, MVP scope, flows, success criteria |
-| [`docs/clinical-safety-boundaries.md`](docs/clinical-safety-boundaries.md) | Hard prohibitions, escalation criteria, copy rules |
-| [`docs/clinical-evidence.md`](docs/clinical-evidence.md) | Sources consulted (WHO 2025 update; CMAJ 2024 OUD guideline; BAP consensus; SAMHSA TIP 63 access note) |
-| [`docs/design-system.md`](docs/design-system.md) | Stitch-derived M3 tokens, type scale, RTL/numeral rules |
-| [`docs/data-model.md`](docs/data-model.md) | TS domain + PostgreSQL schema, plan state machine |
-| [`docs/security-model.md`](docs/security-model.md) | Data minimization, bucket separation, backend posture, secrets hygiene |
-| [`docs/setup-and-testing.md`](docs/setup-and-testing.md) | Install, quality gates, browser/PWA checklists, troubleshooting |
-| [`supabase/`](supabase/) | Optional backend: RLS-protected schema + synthetic seed (disabled by default) |
+| [`docs/product-requirements.md`](docs/product-requirements.md) | مسئله، اصول، دامنهٔ MVP، جریان‌ها و معیارهای موفقیت |
+| [`docs/clinical-safety-boundaries.md`](docs/clinical-safety-boundaries.md) | ممنوعیت‌های سخت، معیارهای ارجاع فوری، قواعد پیام‌ها |
+| [`docs/clinical-evidence.md`](docs/clinical-evidence.md) | منابع بررسی‌شده (به‌روزرسانی WHO 2025؛ راهنمای CMAJ 2024؛ اجماع BAP؛ یادداشت دسترسی SAMHSA TIP 63) |
+| [`docs/design-system.md`](docs/design-system.md) | توکن‌های M3 برگرفته از طرح Stitch، مقیاس تایپ، قواعد RTL و ارقام |
+| [`docs/data-model.md`](docs/data-model.md) | مدل دامنهٔ TypeScript + شمای PostgreSQL، ماشین‌حالت برنامه |
+| [`docs/security-model.md`](docs/security-model.md) | حداقل‌سازی داده، جداسازی مخزن‌ها، وضعیت بک‌اند، بهداشت اسرار |
+| [`docs/setup-and-testing.md`](docs/setup-and-testing.md) | نصب، دروازه‌های کیفیت، چک‌لیست مرورگر/PWA، رفع اشکال |
+| [`deploy/DEPLOY-fa.md`](deploy/DEPLOY-fa.md) | راهنمای گام‌به‌گام استقرار فارسی (VPS/PM2/Nginx/SSL یا Liara) |
+| [`supabase/`](supabase/) | بک‌اند اختیاری: شمای RLS-محور + دادهٔ اولیهٔ مصنوعی (پیش‌فرض غیرفعال) |
 
-## Modes
+## 🧰 فناوری
 
-- **User mode** — real records, local only.
-- **Demo mode** — deterministic synthetic data, visibly badged, isolated bucket.
+Next.js 15 (App Router) · TypeScript strict · Tailwind CSS v4 (توکن‌های M3 از طرح تأییدشدهٔ Stitch) · Vitest + jsdom · فونت لوکال PeydaFaNum · تبدیل تقویم با `jalaali-js` (الگوریتم Borkowski) · Supabase اختیاری (طراحی/RLS نوشته شده، اتصال عمداً وصل نشده).
 
-## Tech
+## 🚢 استقرار (خلاصه)
 
-Next.js 15 (App Router) · TypeScript strict · Tailwind CSS v4 (M3 token system from
-the approved Stitch design) · Vitest + jsdom · local PeydaFaNum font · optional
-Supabase (schema/RLS authored, integration intentionally unwired).
+هر هاست Node.js ≥ 18: `npm run build && npm start` پشت HTTPS — مثلاً VPS کوچک (PM2 + Nginx + Let's Encrypt) یا یک PaaS ایرانی. هاست اشتراکی PHP فقط با خروجی استاتیک ممکن است و مسیر بک‌اند آینده را می‌بندد. راهنمای کامل: [`deploy/DEPLOY-fa.md`](deploy/DEPLOY-fa.md).
 
-## Deployment (short version)
+## 🗺 نقشهٔ راه
 
-Any Node.js ≥ 18 host: `npm run build && npm start` behind HTTPS (PWA requirement) —
-e.g. a small VPS (PM2 + Nginx + Let's Encrypt) or an Iranian Node PaaS. Shared PHP
-hosting works only with a static export and blocks the future backend path. See
-[`deploy/DEPLOY-fa.md`](deploy/DEPLOY-fa.md) for the full step-by-step guide.
+- [x] نسخهٔ ۱٫۰٫۰ — MVP کامل با تقویم شمسی یکپارچه و نصب PWA
+- [ ] اتصال اختیاری بک‌اند (Supabase) برای همگام‌سازی چنددستگاهی — طراحی و RLS آماده است
+- [ ] یادآورهای پس‌زمینهٔ بومی‌تر در نسخه‌های بعدی PWA
 
-## License / status
+## 📄 وضعیت / مجوز
 
-**v1.0.0 — first public release.** Not a medical device; not for clinical decision
-making.
+**نسخهٔ ۱٫۰٫۰ — نخستین انتشار عمومی.** دستگاه پزشکی نیست؛ برای تصمیم‌گیری بالینی ساخته نشده است.
+
+<div dir="ltr">
+
+*Made with care for people on a steady path to recovery.*
+
+</div>
+
+</div>

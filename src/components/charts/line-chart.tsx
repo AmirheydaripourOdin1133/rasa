@@ -2,9 +2,11 @@
 
 /**
  * Lightweight SVG line chart. RTL-safe: time axis is drawn LTR (older→newer)
- * with Persian labels. Null values create a visible GAP — missing data is
- * never drawn as zero and never bridged by a continuous line.
+ * with Jalali (Persian) tick labels. Null values create a visible GAP —
+ * missing data is never drawn as zero and never bridged by a continuous line.
  */
+
+import { faJalaliAxisShort } from "@/lib/dates";
 
 export interface SeriesPoint {
   /** ISO date ascending. */
@@ -114,6 +116,27 @@ export function LineChart({
             </g>
           );
         })}
+        {/* Jalali time axis: up to 4 evenly-spaced date ticks */}
+        {(() => {
+          const pts = series[0]?.points ?? [];
+          if (pts.length < 2) return null;
+          const ticks = Math.min(4, pts.length);
+          const idxs = Array.from({ length: ticks }, (_, t) =>
+            Math.round((t / (ticks - 1)) * (pts.length - 1)),
+          );
+          return idxs.map((i) => (
+            <text
+              key={i}
+              x={x(i, pts.length)}
+              y={height - 6}
+              fontSize="8"
+              fill="#70787c"
+              textAnchor={i === 0 ? "start" : i === pts.length - 1 ? "end" : "middle"}
+            >
+              {faJalaliAxisShort(pts[i].date)}
+            </text>
+          ));
+        })()}
       </svg>
       {yLabel ? (
         <figcaption className="t-label-md mt-1 text-center text-on-surface-variant" dir="rtl">

@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppProvider } from "@/features/app-store";
 import { AppShell } from "@/components/layout/app-shell";
 import { ServiceWorkerRegister } from "@/components/pwa/service-worker-register";
+import { InstallPrompt } from "@/components/pwa/install-prompt";
 
 /**
  * PeydaFaNum — Persian typeface that renders Latin digits as Persian numerals.
@@ -52,6 +53,7 @@ export default function RootLayout({
       <body className={`${peyda.variable} antialiased`}>
         <AppProvider>
           <AppShell>{children}</AppShell>
+          <InstallPrompt />
         </AppProvider>
         <ServiceWorkerRegister />
       </body>

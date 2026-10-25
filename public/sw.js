@@ -5,7 +5,7 @@
  *   - Navigations: network-first with cached-shell fallback.
  * No background sync, no push, no medical logic in the SW — by design.
  */
-const CACHE = "rasa-shell-v2"; // bump per release to purge stale caches on activate
+const CACHE = "rasa-shell-v3"; // bump per release to purge stale caches on activate
 const PRECACHE = ["/", "/logo.svg", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
