@@ -71,6 +71,7 @@ npm run build        # بیلد تولیدی — موفق
 | [`docs/security-model.md`](docs/security-model.md) | حداقل‌سازی داده، جداسازی مخزن‌ها، وضعیت بک‌اند، بهداشت اسرار |
 | [`docs/setup-and-testing.md`](docs/setup-and-testing.md) | نصب، دروازه‌های کیفیت، چک‌لیست مرورگر/PWA، رفع اشکال |
 | [`deploy/DEPLOY-fa.md`](deploy/DEPLOY-fa.md) | راهنمای گام‌به‌گام استقرار فارسی (VPS/PM2/Nginx/SSL یا Liara) |
+| [`deploy/DEPLOY-CHABOKAN-fa.md`](deploy/DEPLOY-CHABOKAN-fa.md) | ستاپ پیشنهادی روی چابکان: لندینگ استاتیک روی ریشهٔ دامنه + اپ روی «هاست Next» با زیردامنهٔ app. |
 | [`supabase/`](supabase/) | بک‌اند اختیاری: شمای RLS-محور + دادهٔ اولیهٔ مصنوعی (پیش‌فرض غیرفعال) |
 
 ## 🧰 فناوری
@@ -79,7 +80,7 @@ Next.js 15 (App Router) · TypeScript strict · Tailwind CSS v4 (توکن‌ها
 
 ## 🚢 استقرار (خلاصه)
 
-هر هاست Node.js ≥ 18: `npm run build && npm start` پشت HTTPS — مثلاً VPS کوچک (PM2 + Nginx + Let's Encrypt) یا یک PaaS ایرانی. هاست اشتراکی PHP فقط با خروجی استاتیک ممکن است و مسیر بک‌اند آینده را می‌بندد. راهنمای کامل: [`deploy/DEPLOY-fa.md`](deploy/DEPLOY-fa.md).
+هر هاست Node.js ≥ 18: `npm run build && npm start` پشت HTTPS — مثلاً VPS کوچک (PM2 + Nginx + Let's Encrypt) یا یک PaaS ایرانی. هاست اشتراکی PHP فقط با خروجی استاتیک ممکن است و مسیر بک‌اند آینده را می‌بندد. راهنمای کامل: [`deploy/DEPLOY-fa.md`](deploy/DEPLOY-fa.md) و برای ستاپ پیشنهادی چابکان (لندینگ + اپ): [`deploy/DEPLOY-CHABOKAN-fa.md`](deploy/DEPLOY-CHABOKAN-fa.md).
 
 ## 🗺 نقشهٔ راه
 
