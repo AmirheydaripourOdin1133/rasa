@@ -1,0 +1,715 @@
+﻿<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <!--
+      âœ³ï¸ ØªÙ†Ø¸ÛŒÙ… Ø¯Ø§Ù…Ù†Ù‡: Ø¨Ø¹Ø¯ Ø§Ø² Ø®Ø±ÛŒØ¯ Ø¯Ø§Ù…Ù†Ù‡ØŒ Ù‡Ù…Ù‡â€ŒØ¬Ø§ ÙÙ‚Ø· Ø¹Ø¨Ø§Ø±Øª YOUR-DOMAIN Ø±Ø§ Ø¨Ø§ Ø¯Ø§Ù…Ù†Ù‡Ù” ÙˆØ§Ù‚Ø¹ÛŒ
+      Ø¬Ø§ÛŒÚ¯Ø²ÛŒÙ† Ú©Ù†ÛŒØ¯ (Ø¯Ø± Ù‡Ù…ÛŒÙ† ÙØ§ÛŒÙ„ Û³ Ù…ÙˆØ±Ø¯ Ø§Ø³Øª: og:urlØŒ og:image Ùˆ Ù„ÛŒÙ†Ú© Ø§Ù¾ Ø¯Ø± Ø¨Ø§Ú©Ø³ Ø¯Ø±ÛŒØ§ÙØª).
+      Ø³Ø§Ø®ØªØ§Ø± Ù¾ÛŒØ´Ù†Ù‡Ø§Ø¯ÛŒ:  rasa-*.ir = Ù‡Ù…ÛŒÙ† Ù„Ù†Ø¯ÛŒÙ†Ú¯   |   app.rasa-*.ir = Ø§Ù¾ PWA
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ø±ÙŽØ³Ø§ | RASA â€” Ù‡Ù…Ø±Ø§Ù‡ Ø¨Ø§Ù„ÛŒÙ†ÛŒ Ù…Ø³ÛŒØ± Ø±Ù‡Ø§ÛŒÛŒ Ùˆ Ø¨Ù‡Ø¨ÙˆØ¯ÛŒ</title>
+    <meta
+      name="description"
+      content="Ø±ÙŽØ³Ø§ Ø¯Ø³ØªÛŒØ§Ø± Ø§Ù…Ù†ØŒ Ø¨ÛŒâ€ŒÙ‚Ø¶Ø§ÙˆØª Ùˆ Ø¢ÙÙ„Ø§ÛŒÙ† Ø¨Ø±Ø§ÛŒ Ù¾Ø§ÛŒØ´ Ùˆ ØªØ«Ø¨ÛŒØª Ø¯Ø±Ù…Ø§Ù† Ø¢Ú¯ÙˆÙ†ÛŒØ³Øªâ€ŒÙ‡Ø§ÛŒ Ø§Ù¾ÛŒÙˆØ¦ÛŒØ¯ÛŒØ› Ø¨Ø¯ÙˆÙ† Ø³Ø±ÙˆØ±ØŒ Ø¨Ø¯ÙˆÙ† ØªØ¨Ù„ÛŒØºØ§Øª Ùˆ Ú©Ø§Ù…Ù„Ø§Ù‹ Ø±Ø§ÛŒÚ¯Ø§Ù†."
+    />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f9f9ff" />
+    <script>
+      /* Entrance motion is progressive: if the module fails to boot, reveal content anyway. */
+      document.documentElement.classList.add("js");
+      window.setTimeout(function () {
+        if (!document.documentElement.classList.contains("motion-ready")) {
+          document.documentElement.classList.remove("js");
+        }
+      }, 2500);
+    </script>
+    <link rel="icon" type="image/png" sizes="512x512" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:url" content="https://YOUR-DOMAIN.ir/" />
+    <meta property="og:site_name" content="Ø±ÙŽØ³Ø§ | RASA" />
+    <meta property="og:title" content="Ø±ÙŽØ³Ø§ | RASA â€” Ù‡Ù…Ø±Ø§Ù‡ Ø¨Ø§Ù„ÛŒÙ†ÛŒ Ù…Ø³ÛŒØ± Ø±Ù‡Ø§ÛŒÛŒ Ùˆ Ø¨Ù‡Ø¨ÙˆØ¯ÛŒ" />
+    <meta
+      property="og:description"
+      content="Ø¯Ø³ØªÛŒØ§Ø± Ø§Ù…Ù†ØŒ Ø¨ÛŒâ€ŒÙ‚Ø¶Ø§ÙˆØª Ùˆ Ø¹Ù„Ù…ÛŒ Ø¨Ø±Ø§ÛŒ Ù¾Ø§ÛŒØ´ Ùˆ ØªØ«Ø¨ÛŒØª Ø¯Ø±Ù…Ø§Ù† Ø¢Ú¯ÙˆÙ†ÛŒØ³Øªâ€ŒÙ‡Ø§ÛŒ Ø§Ù¾ÛŒÙˆØ¦ÛŒØ¯ÛŒ Ù‡Ù…Ø±Ø§Ù‡ Ø¨Ø§ ØªÛŒÙ… Ø¯Ø±Ù…Ø§Ù† â€” Ø¨Ø¯ÙˆÙ† Ø³Ø±ÙˆØ±ØŒ Ø¨Ø¯ÙˆÙ† ØªØ¨Ù„ÛŒØºØ§Øª Ùˆ Ú©Ø§Ù…Ù„Ø§Ù‹ Ø±Ø§ÛŒÚ¯Ø§Ù†."
+    />
+    <meta property="og:image" content="https://YOUR-DOMAIN.ir/logo.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <script defer src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Ø±ÙØªÙ† Ø¨Ù‡ Ù…Ø­ØªÙˆØ§ÛŒ Ø§ØµÙ„ÛŒ</a>
+
+    <header class="site-header" id="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/" aria-label="Ø±ÙŽØ³Ø§ â€” ØµÙØ­Ù‡ Ø§ØµÙ„ÛŒ">
+          <img class="brand__logo" src="logo.png" alt="" width="44" height="44" />
+          <span class="brand__text">
+            <span class="brand__name">Ø±ÙŽØ³Ø§ <span class="brand__en">| RASA</span></span>
+            <span class="brand__tagline">Ù¾Ø§ÛŒØ´ Ø§Ù…Ù† Ùˆ Ù¾Ø§ÛŒØ¨Ù†Ø¯ÛŒ Ø¨Ù‡ Ø¯Ø±Ù…Ø§Ù† Ø¨Ø§Ù„ÛŒÙ†ÛŒ</span>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Ù†Ø§ÙˆØ¨Ø±ÛŒ Ø§ØµÙ„ÛŒ">
+          <ul>
+            <li><a href="#features">Ø§Ù…Ú©Ø§Ù†Ø§Øª Ú©Ù„ÛŒØ¯ÛŒ</a></li>
+            <li><a href="#showcase">Ø¯Ø§Ø´Ø¨ÙˆØ±Ø¯ Ùˆ Ù‚Ø§Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§</a></li>
+            <li><a href="#privacy">Ø­Ø±ÛŒÙ… Ø®ØµÙˆØµÛŒ</a></li>
+            <li><a href="#about">Ø¯Ø±Ø¨Ø§Ø±Ù‡ Ù¾Ø±ÙˆÚ˜Ù‡</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <span class="badge-free">
+            <span class="badge-free__dot" aria-hidden="true"></span>
+            Ø±Ø§ÛŒÚ¯Ø§Ù† Ùˆ Ø¹Ø§Ù…â€ŒØ§Ù„Ù…Ù†ÙØ¹Ù‡
+          </span>
+          <a class="btn btn--primary btn--sm header-cta" href="#download-box">
+            <span class="icon" aria-hidden="true">download</span>
+            Ø¯Ø±ÛŒØ§ÙØª Ø§Ù¾Ù„ÛŒÚ©ÛŒØ´Ù†
+          </a>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ù…Ù†Ùˆ"
+          >
+            <span class="icon nav-toggle__icon" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Ù†Ø§ÙˆØ¨Ø±ÛŒ Ù…ÙˆØ¨Ø§ÛŒÙ„" hidden>
+        <ul class="container">
+          <li><a href="#features">Ø§Ù…Ú©Ø§Ù†Ø§Øª Ú©Ù„ÛŒØ¯ÛŒ</a></li>
+          <li><a href="#showcase">Ø¯Ø§Ø´Ø¨ÙˆØ±Ø¯ Ùˆ Ù‚Ø§Ø¨Ù„ÛŒØªâ€ŒÙ‡Ø§</a></li>
+          <li><a href="#privacy">Ø­Ø±ÛŒÙ… Ø®ØµÙˆØµÛŒ</a></li>
+          <li><a href="#about">Ø¯Ø±Ø¨Ø§Ø±Ù‡ Ù¾Ø±ÙˆÚ˜Ù‡</a></li>
+          <li>
+            <a class="btn btn--primary mobile-nav__cta" href="#download-box">
+              <span class="icon" aria-hidden="true">download</span>
+              Ø¯Ø±ÛŒØ§ÙØª Ø§Ù¾Ù„ÛŒÚ©ÛŒØ´Ù†
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero__bg" aria-hidden="true">
+          <svg class="hero__art" viewBox="0 0 1440 900" preserveAspectRatio="none" focusable="false">
+            <defs>
+              <linearGradient id="wing1" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#006a60" stop-opacity=".16" />
+                <stop offset="50%" stop-color="#14b8a6" stop-opacity=".26" />
+                <stop offset="100%" stop-color="#8cf5e4" stop-opacity=".42" />
+              </linearGradient>
+              <linearGradient id="wing2" x1="100%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#003644" stop-opacity=".1" />
+                <stop offset="60%" stop-color="#0d9488" stop-opacity=".18" />
+                <stop offset="100%" stop-color="#9acee1" stop-opacity=".32" />
+              </linearGradient>
+              <linearGradient id="lineStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#006a60" stop-opacity=".35" />
+                <stop offset="50%" stop-color="#14b8a6" stop-opacity=".2" />
+                <stop offset="100%" stop-color="#8cf5e4" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M-120 480 C180 320, 480 580, 840 380 C1120 220, 1360 310, 1580 180 L1580 900 L-120 900 Z" fill="url(#wing1)" />
+            <path d="M-60 620 C240 450, 620 640, 960 490 C1240 370, 1420 420, 1560 330 L1560 900 L-60 900 Z" fill="url(#wing2)" />
+            <path d="M-80 500 C200 340, 520 600, 880 400 C1160 240, 1380 330, 1600 200" fill="none" stroke="url(#lineStroke)" stroke-width="2.5" stroke-dasharray="6 8" />
+            <path d="M-40 640 C260 470, 640 660, 980 510 C1260 390, 1440 440, 1580 350" fill="none" stroke="url(#lineStroke)" stroke-width="1.5" />
+            <g fill="#006a60" opacity=".5">
+              <circle cx="140" cy="220" r="3" />
+              <circle cx="260" cy="180" r="2" />
+              <circle cx="190" cy="340" r="4" />
+              <circle cx="1240" cy="210" r="3.5" />
+              <circle cx="1320" cy="290" r="2" />
+              <circle cx="1160" cy="160" r="4" />
+              <circle cx="720" cy="110" r="2.5" />
+            </g>
+          </svg>
+        </div>
+
+        <div class="container hero__inner">
+          <p class="hero-badge" data-reveal>
+            <span class="hero-badge__icon icon" aria-hidden="true">spa</span>
+            <strong>Û±Û°Û°Ùª Ø±Ø§ÛŒÚ¯Ø§Ù† Ùˆ Ø¹Ø§Ù…â€ŒØ§Ù„Ù…Ù†ÙØ¹Ù‡</strong>
+            <span class="hero-badge__sep" aria-hidden="true"></span>
+            <span class="hero-badge__note">Ø¨Ø¯ÙˆÙ† ØªØ¨Ù„ÛŒØºØ§Øª â€¢ Ø¨Ø¯ÙˆÙ† Ø³Ø±ÙˆØ± â€¢ ÙˆÙ‚Ù Ú©Ø±Ø§Ù…Øª Ùˆ Ø¢Ø±Ø§Ù…Ø´ Ø²Ù†Ø¯Ú¯ÛŒ</span>
+          </p>
+
+          <div class="hero__intro">
+            <h1 class="hero__title" id="hero-title" data-reveal>
+              Ù‚Ø¯Ù… Ø¨Ù‡ Ù‚Ø¯Ù…ØŒ Ø§Ø² ØªÛŒØ±Ú¯ÛŒ Ø¹Ø§Ø¯Øª ØªØ§ <span class="gradient-text">Ø±ÙˆØ´Ù†Ø§ÛŒÛŒ Ø±Ù‡Ø§ÛŒÛŒ</span>
+            </h1>
+            <p class="hero__lead" data-reveal>
+              Ø¯Ø³ØªÛŒØ§Ø± Ø§Ù…Ù†ØŒ Ø¨ÛŒâ€ŒÙ‚Ø¶Ø§ÙˆØª Ùˆ Ø¹Ù„Ù…ÛŒ Ø¨Ø±Ø§ÛŒ Ù¾Ø§ÛŒØ´ Ùˆ ØªØ«Ø¨ÛŒØª Ø¯Ø±Ù…Ø§Ù† Ø¢Ú¯ÙˆÙ†ÛŒØ³Øªâ€ŒÙ‡Ø§ÛŒ Ø§Ù¾ÛŒÙˆØ¦ÛŒØ¯ÛŒ Ù‡Ù…Ø±Ø§Ù‡ Ø¨Ø§ ØªÛŒÙ… Ø¯Ø±Ù…Ø§Ù†
+            </p>
+            <p class="hero__desc" data-reveal>
+              Â«Ø±ÙŽØ³Ø§Â» Ø¨Ø¯ÙˆÙ† Ø§Ø­Ø³Ø§Ø³ Ú¯Ù†Ø§Ù‡ ÛŒØ§ Ø³Ø±Ø²Ù†Ø´ØŒ Ø¨Ø§ Ø­ÙØ¸ Ø­Ø±ÛŒÙ… Ø®ØµÙˆØµÛŒ Û±Û°Û°Ùª Ø¢ÙÙ„Ø§ÛŒÙ† Ùˆ Ø°Ø®ÛŒØ±Ù‡ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ù…Ù†Ø­ØµØ±Ø§Ù‹ Ø±ÙˆÛŒ Ú¯ÙˆØ´ÛŒ Ø´Ù…Ø§
+              Ø·Ø±Ø§Ø­ÛŒ Ø´Ø¯Ù‡ ØªØ§ Ø¢Ø±Ø§Ù…Ø´ØŒ Ø§Ø¹ØªÙ…Ø§Ø¯Ø¨Ù‡â€ŒÙ†ÙØ³ Ùˆ Ú©Ù†ØªØ±Ù„ Ø²Ù†Ø¯Ú¯ÛŒ Ø±Ø§ Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø¨Ø§ Ø¹Ø²Øªâ€ŒÙ†ÙØ³ Ø¬Ø´Ù† Ø¨Ú¯ÛŒØ±ÛŒØ¯.
+            </p>
+
+            <div class="hero__actions" data-reveal>
+              <a class="btn btn--primary btn--lg" href="#download-box">
+                <span class="icon" aria-hidden="true">download</span>
+                Ø¯Ø±ÛŒØ§ÙØª Ø±Ø§ÛŒÚ¯Ø§Ù† Ø§Ù¾Ù„ÛŒÚ©ÛŒØ´Ù† (Ù†Ø³Ø®Ù‡ ÙˆØ¨ / Ø§Ù†Ø¯Ø±ÙˆÛŒØ¯)
+              </a>
+              <a class="btn btn--glass btn--lg" href="#showcase">
+                <span class="icon" aria-hidden="true">play_circle</span>
+                Ù…Ø´Ø§Ù‡Ø¯Ù‡ ØªÙˆØ± ØªØ¹Ø§Ù…Ù„ÛŒ Ø§Ù…Ú©Ø§Ù†Ø§Øª
+              </a>
+            </div>
+
+            <ul class="hero__trust" data-reveal>
+              <li><span class="icon" aria-hidden="true">verified_user</span> Ø°Ø®ÛŒØ±Ù‡â€ŒØ³Ø§Ø²ÛŒ Û±Û°Û°Ùª Ù…Ø­Ù„ÛŒ Ùˆ Ø¨Ø¯ÙˆÙ† Ø³Ø±ÙˆØ±</li>
+              <li><span class="icon" aria-hidden="true">psychology</span> Ø·Ø±Ø§Ø­ÛŒâ€ŒØ´Ø¯Ù‡ Ø¨Ø± Ù¾Ø§ÛŒÙ‡ Ù¾Ø±ÙˆØªÚ©Ù„ Ú©Ø§Ù‡Ø´ Ø¢Ø³ÛŒØ¨ Ø¨Ø§Ù„ÛŒÙ†ÛŒ</li>
+              <li><span class="icon" aria-hidden="true">no_accounts</span> Ø¨Ø¯ÙˆÙ† Ù†ÛŒØ§Ø² Ø¨Ù‡ Ù†Ø§Ù…ØŒ Ø´Ù…Ø§Ø±Ù‡ ØªÙ…Ø§Ø³ ÛŒØ§ Ø§ÛŒÙ…ÛŒÙ„</li>
+            </ul>
+          </div>
+
+          <figure class="hero-visual" data-reveal data-reveal-delay="240">
+            <div class="phone">
+              <div class="phone__frame">
+                <div class="phone__notch" aria-hidden="true"></div>
+                <div class="phone__screen">
+                  <div class="app-head">
+                    <div class="app-head__id">
+                      <span class="app-head__logo icon" aria-hidden="true">spa</span>
+                      <div>
+                        <p class="app-head__title">Ø¯Ø§Ø´Ø¨ÙˆØ±Ø¯ Ø§Ù…Ø±ÙˆØ²</p>
+                        <p class="app-head__date">Ø³Ù‡â€ŒØ´Ù†Ø¨Ù‡ Û²Û´ Ø¨Ù‡Ù…Ù†</p>
+                      </div>
+                    </div>
+                    <span class="chip chip--live"><span class="dot" aria-hidden="true"></span> Ø­Ø§Ù„Øª Ø§Ø³ØªØªØ§Ø± ÙØ¹Ø§Ù„</span>
+                  </div>
+
+                  <div class="dose-card">
+                    <div class="dose-card__top">
+                      <span class="muted">Ù†ÙˆØ¨Øª Ø±ÙˆØ²Ø§Ù†Ù‡ (Ù…ØªØ§Ø¯ÙˆÙ†)</span>
+                      <span class="chip chip--solid">Ø«Ø¨Øª Ø¯Ù‚ÛŒÙ‚</span>
+                    </div>
+                    <div class="dose-card__amount">
+                      <p><strong>Û²Ûµ</strong> <span class="muted">Ù…ÛŒÙ„ÛŒâ€ŒÚ¯Ø±Ù… (Ø³ÛŒâ€ŒØ³ÛŒ)</span></p>
+                      <span class="dose-card__time">Ø³Ø§Ø¹Øª Ø«Ø¨Øª: Û°Û¹:Û³Û°</span>
+                    </div>
+                    <div class="streak">
+                      <div class="streak__labels">
+                        <span>Ù¾Ø§ÛŒØ¨Ù†Ø¯ÛŒ Ù‡ÙØªÙ‡ Ø¬Ø§Ø±ÛŒ</span>
+                        <strong>Û¶ Ø§Ø² Û· Ø±ÙˆØ²</strong>
+                      </div>
+                      <div class="streak__track"><span style="width: 86%"></span></div>
+                    </div>
+                    <span class="app-button">
+                      <span class="icon" aria-hidden="true">check_circle</span>
+                      Ø«Ø¨Øª Ù†ÙˆØ¨Øª Ø§Ù…Ø±ÙˆØ²
+                    </span>
+                  </div>
+
+                  <div class="wellbeing">
+                    <div class="wellbeing__text">
+                      <span class="icon" aria-hidden="true">sentiment_satisfied</span>
+                      <div>
+                        <p>ÙˆØ¶Ø¹ÛŒØª Ø¢Ø±Ø§Ù…Ø´ Ùˆ ÙˆÙ„Ø¹</p>
+                        <span>Ø¨Ø¯ÙˆÙ† Ø§Ø¶Ø·Ø±Ø§Ø¨ØŒ Ø®ÙˆØ§Ø¨ Ù¾Ø§ÛŒØ¯Ø§Ø±</span>
+                      </div>
+                    </div>
+                    <span class="icon wellbeing__chevron" aria-hidden="true">chevron_left</span>
+                  </div>
+
+                  <div class="app-nav" aria-hidden="true">
+                    <span class="is-active"><span class="icon">calendar_today</span>Ø§Ù…Ø±ÙˆØ²</span>
+                    <span><span class="icon">insights</span>Ø±ÙˆÙ†Ø¯ Ú©Ø§Ù‡Ø´</span>
+                    <span><span class="icon">shield</span>Ø§Ø³ØªØªØ§Ø±</span>
+                    <span><span class="icon">support_agent</span>Ø§ÙˆØ±Ú˜Ø§Ù†Ø³</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="floaters">
+              <div class="floater floater--privacy" data-reveal="fade" data-reveal-delay="520">
+                <span class="floater__icon"><span class="icon" aria-hidden="true">lock</span></span>
+                <div>
+                  <p class="floater__title">Ù…Ø­Ø±Ù…Ø§Ù†Ú¯ÛŒ Ù…Ø·Ù„Ù‚ Ùˆ Ø±Ù…Ø²Ú¯Ø°Ø§Ø±ÛŒ</p>
+                  <p class="floater__text">Ø¯Ø§Ø¯Ù‡â€ŒÙ‡Ø§ÛŒ Ø´Ù…Ø§ Ù‡Ø±Ú¯Ø² Ø¯Ø³ØªÚ¯Ø§Ù‡ Ø±Ø§ ØªØ±Ú© Ù†Ù…ÛŒâ€ŒÚ©Ù†Ù†Ø¯.</p>
+                </div>
+              </div>
+              <div class="floater floater--streak" data-reveal="fade" data-reveal-delay="640">
+                <span class="floater__icon floater__icon--mint"><span class="icon" aria-hidden="true">auto_awesome</span></span>
+                <div>
+                  <p class="floater__title">Û³Û¸ Ø±ÙˆØ² Ø§Ø³ØªÙ…Ø±Ø§Ø± Ø¢Ú¯Ø§Ù‡Ø§Ù†Ù‡ âœ¨</p>
+                  <p class="floater__text">Ú©Ø§Ù‡Ø´ Û²ÛµÙª Ø¯ÙˆØ² Ø¨Ø¯ÙˆÙ† Ø§ÙØª Ú©ÛŒÙÛŒØª Ø®ÙˆØ§Ø¨</p>
+                </div>
+              </div>
+              <div class="floater floater--clinic" data-reveal="fade" data-reveal-delay="760">
+                <span class="floater__icon floater__icon--soft"><span class="icon" aria-hidden="true">medical_services</span></span>
+                <div>
+                  <p class="floater__title">Ø®Ø±ÙˆØ¬ÛŒ Ù…Ø³ØªÙ†Ø¯ Ø¬Ù‡Øª ÙˆÛŒØ²ÛŒØª Ù¾Ø²Ø´Ú© MMT</p>
+                  <p class="floater__text">Ø§Ø±Ø²ÛŒØ§Ø¨ÛŒ Ø¹Ù„Ù…ÛŒ Ùˆ ØªÙ†Ø¸ÛŒÙ… Ø¨Ø§ Ø¢Ø±Ø§Ù…Ø´ Ø¯ÙˆØ² Ø±ÙˆØ²Ø§Ù†Ù‡</p>
+                </div>
+              </div>
+            </div>
+
+            <figcaption class="visually-hidden">
+              Ù†Ù…Ø§ÛŒÛŒ Ø§Ø² Ø¯Ø§Ø´Ø¨ÙˆØ±Ø¯ Ø§Ù¾Ù„ÛŒÚ©ÛŒØ´Ù† Ø±ÙŽØ³Ø§: Ø¯ÙˆØ² Ø±ÙˆØ²Ø§Ù†Ù‡ØŒ Ø³Ø§Ø¹Øª Ø«Ø¨ØªØŒ Ù…ÛŒØ²Ø§Ù† Ù¾Ø§ÛŒØ¨Ù†Ø¯ÛŒ Ù‡ÙØªÚ¯ÛŒ Ùˆ Ø¯Ø³ØªØ±Ø³ÛŒ Ø³Ø±ÛŒØ¹ Ø¨Ù‡ Ø®Ø·ÙˆØ· Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats" aria-label="Ø¢Ù…Ø§Ø± Ùˆ ØªØ¹Ù‡Ø¯Ù‡Ø§ÛŒ Ù¾Ø±ÙˆÚ˜Ù‡">
+        <ul class="container stats__grid">
+          <li class="stat" data-reveal>
+            <span class="stat__value stat__value--accent" data-count="42" data-count-suffix="Ùª">Û´Û²Ùª</span>
+            <span class="stat__label">Ú©Ø§Ù‡Ø´ ØªØ«Ø¨ÛŒØªâ€ŒØ´Ø¯Ù‡ Ø¯ÙˆØ²</span>
+            <span class="stat__note">Ø¯Ø± Ø¨Ø§Ø²Ù‡ Ù¾ÛŒÚ¯ÛŒØ±ÛŒ Û¶ Ù…Ø§Ù‡Ù‡ Ú©Ø§Ø±Ø¨Ø±Ø§Ù† Ø¢Ø²Ù…Ø§ÛŒØ´ÛŒ</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__value" data-count="100" data-count-suffix="Ùª">Û±Û°Û°Ùª</span>
+            <span class="stat__label">Ù…Ø­Ø±Ù…Ø§Ù†Ú¯ÛŒ Ø¯Ø³ØªÚ¯Ø§Ù‡ÛŒ</span>
+            <span class="stat__note">ØµÙØ± Ø¨Ø§ÛŒØª Ø§Ø±Ø³Ø§Ù„ Ø¨Ù‡ Ù‡Ø±Ú¯ÙˆÙ†Ù‡ Ø³Ø±ÙˆØ± Ø®Ø§Ø±Ø¬ÛŒ</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__value stat__value--accent">Û° Ø±ÛŒØ§Ù„</span>
+            <span class="stat__label">Ú©Ø§Ù…Ù„Ø§Ù‹ Ù…Ø±Ø¯Ù…â€ŒÙ†Ù‡Ø§Ø¯ Ùˆ ØºÛŒØ±ØªØ¬Ø§Ø±ÛŒ</span>
+            <span class="stat__note">Ù¾Ø±ÙˆÚ˜Ù‡â€ŒØ§ÛŒ Ù…Ø³ØªÙ‚Ù„ Ø¨Ø§ Ù‡Ø²ÛŒÙ†Ù‡ Ø´Ø®ØµÛŒ</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__value">Û²Û´/Û·</span>
+            <span class="stat__label">Ø³Ù¾Ø± Ø­Ø§Ù…ÛŒ Ø¯Ø± Ø¬ÛŒØ¨ Ø´Ù…Ø§</span>
+            <span class="stat__note">ØªÚ©Ù†ÛŒÚ©â€ŒÙ‡Ø§ÛŒ ØªÙ†ÙØ³ Ùˆ Ú©Ù†ØªØ±Ù„ ÙÙˆØ±ÛŒ ÙˆØ³ÙˆØ³Ù‡</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- PILLARS -->
+      <section class="section pillars" id="features" aria-labelledby="features-title">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">ÙÙ„Ø³ÙÙ‡ Ø·Ø±Ø§Ø­ÛŒ Ø±ÙŽØ³Ø§</p>
+            <h2 id="features-title">Ù†Ú¯Ø§Ù‡ÛŒ Ù‡Ù…Ø¯Ù„Ø§Ù†Ù‡ Ùˆ Ø§Ù†Ø³Ø§Ù†ÛŒØŒ Ø¨Ù‡ Ø¯ÙˆØ± Ø§Ø² Ù¾ÛŒØ´â€ŒØ¯Ø§ÙˆØ±ÛŒ</h2>
+            <p class="section-head__text">
+              Ø¨ÛŒÙ…Ø§Ø± ØªØ­Øª Ø¯Ø±Ù…Ø§Ù† Ù†Ú¯Ù‡â€ŒØ¯Ø§Ø±Ù†Ø¯Ù‡ Ø´Ø§ÛŒØ³ØªÙ‡ Ø§Ø­ØªØ±Ø§Ù…ØŒ Ø¯Ù‚Øª Ø¯Ø±Ù…Ø§Ù†ÛŒ Ùˆ Ø±Ù‡Ø§ÛŒÛŒ Ø§Ø² Ù†Ú¯Ø§Ù‡ ØªØ­Ù‚ÛŒØ±Ø¢Ù…ÛŒØ² Ø§Ø³Øª. Ø±ÙŽØ³Ø§ Ø¨Ø§ Ø¯Ø§Ù†Ø´
+              Ø±ÙˆØ§Ù†â€ŒØ´Ù†Ø§Ø®ØªÛŒ Ø´Ú©Ù„ Ú¯Ø±ÙØªÙ‡ ØªØ§ Ø§Ù†Ú¯ÛŒØ²Ù‡ Ø´Ù…Ø§ Ø¯Ø± Ø±ÙˆØ²Ù‡Ø§ÛŒ Ù¾Ø±Ú†Ø§Ù„Ø´ Ø­ÙØ¸ Ø´ÙˆØ¯.
+            </p>
+          </header>
+
+          <div class="pillars__grid">
+            <article class="pillar" data-reveal>
+              <span class="pillar__icon"><span class="icon" aria-hidden="true">query_stats</span></span>
+              <h3>Ù¾Ø§ÛŒØ´ Ø¢Ú¯Ø§Ù‡Ø§Ù†Ù‡ Ùˆ Ø¯ÙˆØ² ÙˆØ§Ù‚Ø¹ÛŒ</h3>
+              <p>
+                Ø«Ø¨Øª Ø¨Ø¯ÙˆÙ† ØªØ±Ø³ Ù‡Ø±Ú¯ÙˆÙ†Ù‡ ØªØºÛŒÛŒØ± Ø¯Ø± Ù…Ù‚Ø¯Ø§Ø± Ù…ØµØ±Ù. Ø¨Ø±Ù†Ø§Ù…Ù‡ Ù‡Ø±Ú¯Ø² Ø´Ù…Ø§ Ø±Ø§ Ø¨Ø§ Ø®Ø·Ø§Ù‡Ø§ÛŒ Ù‚Ø±Ù…Ø² ØªÙ†Ø¨ÛŒÙ‡ Ù†Ù…ÛŒâ€ŒÚ©Ù†Ø¯Ø› Ø¨Ù„Ú©Ù‡
+                Ø¨Ø³ØªØ±ÛŒ Ù…Ù†Ø¸Ù… Ù…ÛŒâ€ŒØ³Ø§Ø²Ø¯ ØªØ§ Ø¯Ø± Ø¬Ù„Ø³Ù‡ Ø¨Ø¹Ø¯ÛŒ Ø¨Ø§ Ù¾Ø²Ø´Ú©ØŒ ÙˆØ§Ù‚Ø¹ÛŒØª Ø¯Ø±Ù…Ø§Ù† Ø±Ø§ Ø¨ÛŒâ€ŒÙ¾Ø±Ø¯Ù‡ Ø§Ø±Ø²ÛŒØ§Ø¨ÛŒ Ú©Ù†ÛŒØ¯.
+              </p>
+              <p class="pillar__note">
+                Ú©Ø§Ù„ÛŒØ¨Ø±Ø§Ø³ÛŒÙˆÙ† ØªØ¯Ø±ÛŒØ¬ÛŒØŒ Ù†Ù‡ ØªØµÙ…ÛŒÙ…â€ŒÙ‡Ø§ÛŒ Ù†Ø§Ú¯Ù‡Ø§Ù†ÛŒ
+                <span class="icon" aria-hidden="true">arrow_back</span>
+              </p>
+            </article>
+
+            <article class="pillar" id="privacy" data-reveal>
+              <span class="pillar__icon pillar__icon--deep"><span class="icon" aria-hidden="true">visibility_off</span></span>
+              <h3>Ø³Ù¾Ø± Ø­Ø±ÛŒÙ… Ø®ØµÙˆØµÛŒ Ùˆ Ø­Ø§Ù„Øª Ø§Ø³ØªØªØ§Ø±</h3>
+              <p>
+                Ø§Ù…Ú©Ø§Ù† ØªØºÛŒÛŒØ± Ø¢ÛŒÚ©ÙˆÙ† Ùˆ Ù†Ø§Ù… Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø¨Ù‡ Â«ÛŒØ§Ø¯Ø¢ÙˆØ± Ù†ÙˆØ´ÛŒØ¯Ù† Ø¢Ø¨Â» ÛŒØ§ Â«Ø¯ÙØªØ±Ú†Ù‡ ÛŒØ§Ø¯Ø¯Ø§Ø´ØªÂ»ØŒ Ø±Ù…Ø² Ø¨ÛŒÙˆÙ…ØªØ±ÛŒÚ© Ùˆ Ø§Ø¹Ù„Ø§Ù…ÛŒÙ‡â€ŒÙ‡Ø§ÛŒ
+                Ù…Ø¨Ø¯Ù„ ØªØ§ Ù‡ÛŒÚ† Ø´Ø®Øµ Ú©Ù†Ø¬Ú©Ø§ÙˆÛŒ Ø¯Ø± Ù…ØªØ±ÙˆØŒ Ø®Ø§Ù†Ù‡ ÛŒØ§ Ù…Ø­Ù„ Ú©Ø§Ø± Ù…ØªÙˆØ¬Ù‡ ÙØ±Ø§ÛŒÙ†Ø¯ Ø¯Ø±Ù…Ø§Ù† Ù†Ø´ÙˆØ¯.
+              </p>
+              <p class="pillar__note pillar__note--deep">
+                Ø¢Ø±Ø§Ù…Ø´ Ø®Ø§Ø·Ø± Ø¯Ø± Ø¬Ù…Ø¹ Ùˆ Ø®Ø§Ù†ÙˆØ§Ø¯Ù‡
+                <span class="icon" aria-hidden="true">arrow_back</span>
+              </p>
+            </article>
+
+            <article class="pillar" data-reveal>
+              <span class="pillar__icon"><span class="icon" aria-hidden="true">mood</span></span>
+              <h3>ØªØ­Ù„ÛŒÙ„ Ø®Ù„Ù‚â€ŒÙˆØ®Ùˆ Ùˆ Ø¹Ù„Ø§Ø¦Ù… Ø¨Ø¯Ù†ÛŒ</h3>
+              <p>
+                Ø´Ù†Ø§Ø³Ø§ÛŒÛŒ Ø±ÛŒØ´Ù‡â€ŒÙ‡Ø§ÛŒ Ø¨Ø§Ø²Ú¯Ø´Øª Ùˆ Ù…Ø­Ø±Ú©â€ŒÙ‡Ø§. Ø§Ø±ØªØ¨Ø§Ø· Ù…Ø³ØªÙ‚ÛŒÙ… Ø¨ÛŒÙ† Ú©Ø§Ù‡Ø´ Ø¯ÙˆØ²ØŒ ØªØºÛŒÛŒØ±Ø§Øª Ú©ÛŒÙÛŒØª Ø®ÙˆØ§Ø¨ Ø´Ø¨Ø§Ù†Ù‡ Ùˆ Ù†ÙˆØ³Ø§Ù†Ø§Øª Ø®Ù„Ù‚
+                Ø¯Ø± Ù‚Ø§Ù„Ø¨ Ú¯Ø±Ø§Ùâ€ŒÙ‡Ø§ÛŒ ØªØ­Ù„ÛŒÙ„ÛŒ Ù‚Ø§Ø¨Ù„ ÙÙ‡Ù… Ø¨Ø±Ø§ÛŒ Ù¾ÛŒØ´Ú¯ÛŒØ±ÛŒ Ø§Ø² Ù„ØºØ²Ø´.
+              </p>
+              <p class="pillar__note">
+                Ø´Ù†Ø§Ø®Øª Ø§Ù„Ú¯ÙˆÙ‡Ø§ÛŒ Ø§Ø­Ø³Ø§Ø³ÛŒ Ùˆ Ú©Ø§Ù‡Ø´ Ù¾Ø§ÛŒØ¯Ø§Ø±
+                <span class="icon" aria-hidden="true">arrow_back</span>
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHOWCASE -->
+      <section class="section showcase" id="showcase" aria-labelledby="showcase-title">
+        <div class="container">
+          <header class="section-head section-head--tight" data-reveal>
+            <h2 id="showcase-title">ØªÙˆØ± ØªØ¹Ø§Ù…Ù„ÛŒ Ø§Ù…Ú©Ø§Ù†Ø§Øª Ø¨Ø§Ù„ÛŒÙ†ÛŒ Ø±ÙŽØ³Ø§</h2>
+            <p class="section-head__text">Ø±ÙˆÛŒ Ø¨Ø®Ø´â€ŒÙ‡Ø§ÛŒ Ù…Ø®ØªÙ„Ù Ú©Ù„ÛŒÚ© Ú©Ù†ÛŒØ¯ ØªØ§ Ø¬Ø²Ø¦ÛŒØ§Øª Ù…Ø¹Ù…Ø§Ø±ÛŒ ØªØ¬Ø±Ø¨Ù‡ Ú©Ø§Ø±Ø¨Ø±ÛŒ Ø±ÙŽØ³Ø§ Ø±Ø§ Ù„Ù…Ø³ Ú©Ù†ÛŒØ¯.</p>
+          </header>
+
+          <div class="tabs" role="tablist" aria-label="Ø¨Ø®Ø´â€ŒÙ‡Ø§ÛŒ ØªÙˆØ± ØªØ¹Ø§Ù…Ù„ÛŒ" data-reveal>
+            <button class="tab" id="tab-dash" role="tab" aria-selected="true" aria-controls="panel-dash" tabindex="0">
+              <span class="icon" aria-hidden="true">dashboard</span> Û±. Ø¯Ø§Ø´Ø¨ÙˆØ±Ø¯ Ùˆ ØªÙ‚ÙˆÛŒÙ… Ø¯ÙˆØ²
+            </button>
+            <button class="tab" id="tab-log" role="tab" aria-selected="false" aria-controls="panel-log" tabindex="-1">
+              <span class="icon" aria-hidden="true">edit_note</span> Û². Ø«Ø¨Øª Ø¨Ø¯ÙˆÙ† Ù‚Ø¶Ø§ÙˆØª
+            </button>
+            <button class="tab" id="tab-trend" role="tab" aria-selected="false" aria-controls="panel-trend" tabindex="-1">
+              <span class="icon" aria-hidden="true">trending_down</span> Û³. Ù†Ù…ÙˆØ¯Ø§Ø± Ú©Ø§Ù‡Ø´ Ùˆ Ø®Ø±ÙˆØ¬ÛŒ PDF
+            </button>
+            <button class="tab" id="tab-stealth" role="tab" aria-selected="false" aria-controls="panel-stealth" tabindex="-1">
+              <span class="icon" aria-hidden="true">fingerprint</span> Û´. Ø§Ø³ØªØªØ§Ø± Ùˆ Ù‚ÙÙ„ Ø§Ù…Ù†ÛŒØªÛŒ
+            </button>
+          </div>
+
+          <div class="panels" data-reveal>
+            <div class="panel" id="panel-dash" role="tabpanel" aria-labelledby="tab-dash" tabindex="0">
+              <div class="panel__body">
+                <p class="chip-text">Ù¾Ø§ÛŒØ´ Ø¨Ù„Ø§Ø¯Ø±Ù†Ú¯ Ø±ÙˆØ²Ø§Ù†Ù‡</p>
+                <h3>Ø¯Ø§Ø´Ø¨ÙˆØ±Ø¯ ÙˆØ§Ø¶Ø­ØŒ Ø¨Ø¯ÙˆÙ† Ø³Ø±Ø¯Ø±Ú¯Ù…ÛŒ Ø°Ù‡Ù†ÛŒ</h3>
+                <p>
+                  Ù‡Ù†Ú¯Ø§Ù…ÛŒ Ú©Ù‡ Ø¨ÛŒØ¯Ø§Ø± Ù…ÛŒâ€ŒØ´ÙˆÛŒØ¯ØŒ Ø§ÙˆÙ„ÛŒÙ† Ù†ÛŒØ§Ø² Ø°Ù‡Ù†ØŒ Ø´ÙØ§ÙÛŒØª Ùˆ Ø³Ø§Ø¯Ú¯ÛŒ Ø§Ø³Øª. Ø¯Ø§Ø´Ø¨ÙˆØ±Ø¯ Ø±ÙŽØ³Ø§ Ø¯ÙˆØ² Ù…Ù‚Ø±Ø± Ù‡Ù…Ø§Ù† Ø±ÙˆØ²ØŒ ÙØ§ØµÙ„Ù‡
+                  Ø²Ù…Ø§Ù†ÛŒ ØªØ§ Ù†ÙˆØ¨Øª Ø¨Ø¹Ø¯ÛŒ Ùˆ ØªÙ‚ÙˆÛŒÙ… ØªØµÙˆÛŒØ±ÛŒ Ù…ØµØ±Ù Ø±Ø§ Ø¨Ø§ Ø±Ù†Ú¯â€ŒÙ‡Ø§ÛŒ Ø¢Ø±Ø§Ù…Ø´â€ŒØ¨Ø®Ø´ Ù†Ø´Ø§Ù† Ù…ÛŒâ€ŒØ¯Ù‡Ø¯.
+                </p>
+                <ul class="panel__list">
+                  <li><span class="icon" aria-hidden="true">check_circle</span> Ù…Ø­Ø§Ø³Ø¨Ù‡ Ø®ÙˆØ¯Ú©Ø§Ø± Ù…ÛŒÙ„ÛŒâ€ŒÚ¯Ø±Ù… Ø¨Ù‡ Ø³ÛŒâ€ŒØ³ÛŒ Ø¨Ø± Ø§Ø³Ø§Ø³ ØºÙ„Ø¸Øª Ø¯Ø§Ø±ÙˆÛŒ Ù…Ø±Ú©Ø² Ø¯Ø±Ù…Ø§Ù†ÛŒ</li>
+                  <li><span class="icon" aria-hidden="true">check_circle</span> ÛŒØ§Ø¯Ø¢ÙˆØ±Ù‡Ø§ÛŒ Ù…Ù„Ø§ÛŒÙ… Ø¨Ø¯ÙˆÙ† Ú©Ù„Ù…Ø§Øª Ø­Ø³Ø§Ø³ÛŒØªâ€ŒØ¨Ø±Ø§Ù†Ú¯ÛŒØ² (Ø¯Ø§Ø±Ùˆ / Ø§Ø¹ØªÛŒØ§Ø¯)</li>
+                  <li><span class="icon" aria-hidden="true">check_circle</span> Ø«Ø¨Øª Ø²Ù…Ø§Ù† Ø¯Ù‚ÛŒÙ‚ Ø¯Ø±ÛŒØ§ÙØª Ø´Ø±Ø¨Øª ÛŒØ§ Ù‚Ø±Øµ Ø¨Ø±Ø§ÛŒ Ø±ØµØ¯ Ù†ÛŒÙ…Ù‡â€ŒØ¹Ù…Ø± Ø¨ÛŒÙˆÙ„ÙˆÚ˜ÛŒÚ©ÛŒ</li>
+                </ul>
+              </div>
+
+              <div class="panel__visual">
+                <div class="mini-card">
+                  <div class="mini-card__head">
+                    <strong>Ø¨Ø±Ù†Ø§Ù…Ù‡ Ù‡ÙØªÚ¯ÛŒ Ù…ØªØ§Ø¯ÙˆÙ†</strong>
+                    <span class="mini-card__ok">ØªØ«Ø¨ÛŒØª Ù…ÙˆÙÙ‚</span>
+                  </div>
+                  <div class="week">
+                    <span class="day is-done">Ø´<br />âœ“</span>
+                    <span class="day is-done">ÛŒ<br />âœ“</span>
+                    <span class="day is-done">Ø¯<br />âœ“</span>
+                    <span class="day is-done">Ø³<br />âœ“</span>
+                    <span class="day is-done">Ú†<br />âœ“</span>
+                    <span class="day is-today">Ù¾<br />Ø§Ù…Ø±ÙˆØ²</span>
+                    <span class="day">Ø¬<br />-</span>
+                  </div>
+                  <div class="mini-card__row">
+                    <span>Ø¯ÙˆØ² ØªØ§ÛŒÛŒØ¯Ø´Ø¯Ù‡:</span>
+                    <strong>Û²Û° Ù…ÛŒÙ„ÛŒâ€ŒÚ¯Ø±Ù…</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-log" role="tabpanel" aria-labelledby="tab-log" tabindex="0" hidden>
+              <div class="panel__body">
+                <p class="chip-text">Ø´ÙØ§ÙÛŒØª Ø¨Ø¯ÙˆÙ† Ø®Ø¬Ø§Ù„Øª</p>
+                <h3>Ø«Ø¨Øª Ø¯ÙˆØ² Ù…ØµØ±ÙÛŒ ÙˆØ§Ù‚Ø¹ÛŒØŒ Ø¨Ø¯ÙˆÙ† Ø³Ø±Ø²Ù†Ø´</h3>
+                <p>
+                  Ø§Ú¯Ø± Ø¯Ø± Ø±ÙˆØ²ÛŒ Ù¾Ø±ØªÙ†Ø´ Ø¯ÙˆØ² Ù…ØªÙØ§ÙˆØªÛŒ Ù…ØµØ±Ù Ú©Ø±Ø¯ÛŒØ¯ØŒ Ø±ÙŽØ³Ø§ Ø¨Ø§ Ø®ÙˆÙ†Ø³Ø±Ø¯ÛŒ Ø¢Ù† Ø±Ø§ Ø«Ø¨Øª Ù…ÛŒâ€ŒÚ©Ù†Ø¯. Ù‡ÛŒÚ† Ù¾ÛŒØ§Ù… Ø§Ø®Ø·Ø§Ø± ØªØ­Ù‚ÛŒØ±Ú©Ù†Ù†Ø¯Ù‡
+                  Ø¯Ø± Ú©Ø§Ø± Ù†ÛŒØ³ØªØ› Ø±ÙˆÛŒÚ©Ø±Ø¯ Ú©Ø§Ù‡Ø´ Ø¢Ø³ÛŒØ¨ ÛŒØ¹Ù†ÛŒ Ø¯Ø§Ù†Ø³ØªÙ† Ø­Ù‚ÛŒÙ‚Øª ÙˆØ¶Ø¹ÛŒØª Ø¨Ø±Ø§ÛŒ ØªØµÙ…ÛŒÙ…â€ŒÚ¯ÛŒØ±ÛŒ Ø¢Ú¯Ø§Ù‡Ø§Ù†Ù‡.
+                </p>
+                <ul class="panel__list">
+                  <li><span class="icon" aria-hidden="true">tune</span> Ø§Ø³ØªÙ¾Ø± Ø³Ø±ÛŒØ¹ Ø¨Ø§ Ø¯Ú©Ù…Ù‡â€ŒÙ‡Ø§ÛŒ Ø¨Ø²Ø±Ú¯ Ù…Ù†Ø§Ø³Ø¨ Ù„Ø±Ø²Ø´ Ø¯Ø³Øª ÛŒØ§ Ú©Ù…Ø¨ÙˆØ¯ Ø§Ù†Ø±Ú˜ÛŒ</li>
+                  <li><span class="icon" aria-hidden="true">sticky_note_2</span> Ø¨Ø®Ø´ ÛŒØ§Ø¯Ø¯Ø§Ø´Øª Ø®ØµÙˆØµÛŒ: Â«Ø§Ù…Ø±ÙˆØ² Ú†Ù‡ ÙØ´Ø§Ø±ÛŒ Ø§Ø­Ø³Ø§Ø³ Ú©Ø±Ø¯Ù…ØŸÂ»</li>
+                </ul>
+              </div>
+
+              <div class="panel__visual">
+                <div class="mini-card">
+                  <p class="mini-card__title">Ø«Ø¨Øª Ù†ÙˆØ¨Øª Ø¹ØµØ±</p>
+                  <div class="stepper">
+                    <span class="stepper__btn" aria-hidden="true">âˆ’</span>
+                    <div class="stepper__value">
+                      <strong>Û±Ûµ</strong>
+                      <span>Ù…ÛŒÙ„ÛŒâ€ŒÚ¯Ø±Ù…</span>
+                    </div>
+                    <span class="stepper__btn" aria-hidden="true">+</span>
+                  </div>
+                  <p class="mini-card__hint">Ûµ Ù…ÛŒÙ„ÛŒâ€ŒÚ¯Ø±Ù… Ú©Ù…ØªØ± Ø§Ø² Ù†ÙˆØ¨Øª Ù…Ø´Ø§Ø¨Ù‡ Ø¯Ø± Ù‡ÙØªÙ‡ Ú¯Ø°Ø´ØªÙ‡</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-trend" role="tabpanel" aria-labelledby="tab-trend" tabindex="0" hidden>
+              <div class="panel__body">
+                <p class="chip-text">Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ Ø§Ø² ØªÛŒÙ… Ø¯Ø±Ù…Ø§Ù†</p>
+                <h3>Ú¯Ø²Ø§Ø±Ø´â€ŒÚ¯ÛŒØ±ÛŒ Ø¯Ù‚ÛŒÙ‚ Ùˆ Ø®Ø±ÙˆØ¬ÛŒ Ø§Ø³ØªØ§Ù†Ø¯Ø§Ø±Ø¯ Ø¨Ø±Ø§ÛŒ Ù¾Ø²Ø´Ú©</h3>
+                <p>
+                  Ù‡Ù†Ú¯Ø§Ù… Ù…Ø±Ø§Ø¬Ø¹Ù‡ Ø¨Ù‡ Ú©Ù„ÛŒÙ†ÛŒÚ© ØªØ±Ú© ÛŒØ§ Ù…Ø·Ø¨ Ù¾Ø²Ø´Ú© Ù…Ø¹Ø§Ù„Ø¬ØŒ Ø¯ÛŒÚ¯Ø± Ù†ÛŒØ§Ø²ÛŒ Ø¨Ù‡ ØªÚ©ÛŒÙ‡ Ø¨Ø± Ø­Ø§ÙØ¸Ù‡ Ù†Ø¯Ø§Ø±ÛŒØ¯. Ø¨Ø§ ÛŒÚ© Ù„Ù…Ø³ØŒ Ú©Ø§Ø±Ù†Ø§Ù…Ù‡
+                  Ù…Ø³ØªÙ†Ø¯ Û³Û° Ø±ÙˆØ²Ù‡ Ø´Ø§Ù…Ù„ Ø´ÛŒØ¨ Ú©Ø§Ù‡Ø´ØŒ Ù†ÙˆØ³Ø§Ù†Ø§Øª Ø®Ù„Ù‚ Ùˆ Ø®ÙˆØ§Ø¨ Ø¨Ù‡ ØµÙˆØ±Øª ÙØ§ÛŒÙ„ PDF Ù…Ù†Ø¸Ù… Ø¢Ù…Ø§Ø¯Ù‡ Ø§Ø±Ø§Ø¦Ù‡ Ø§Ø³Øª.
+                </p>
+                <ul class="panel__list">
+                  <li><span class="icon" aria-hidden="true">picture_as_pdf</span> ÙØ§ÛŒÙ„ Ø§Ø³ØªØ§Ù†Ø¯Ø§Ø±Ø¯ Ùˆ ØªÙ…ÛŒØ² Ø¨Ø¯ÙˆÙ† Ù†Ø§Ù… Ø¨ÛŒÙ…Ø§Ø± Ø¬Ù‡Øª Ø­ÙØ¸ Ú©Ø§Ù…Ù„ Ù‡ÙˆÛŒØª</li>
+                  <li><span class="icon" aria-hidden="true">stacked_line_chart</span> Ø§Ø±Ø²ÛŒØ§Ø¨ÛŒ Ù‡Ù…Ø²Ù…Ø§Ù† Ø¯ÙˆØ² Ù…ØµØ±ÙÛŒ Ùˆ Ø´Ø§Ø®Øµ ÙˆÙ„Ø¹ (Craving)</li>
+                </ul>
+              </div>
+
+              <div class="panel__visual">
+                <div class="mini-card">
+                  <p class="mini-card__title">Ø´ÛŒØ¨ Ù…ØµØ±Ù Û³Û° Ø±ÙˆØ² Ø§Ø®ÛŒØ±</p>
+                  <svg class="chart" viewBox="0 0 300 120" fill="none" aria-hidden="true" focusable="false">
+                    <path d="M 10 30 Q 70 35 120 55 T 200 80 T 290 95" stroke="currentColor" stroke-linecap="round" stroke-width="4" />
+                    <circle cx="10" cy="30" r="5" fill="#003644" />
+                    <circle cx="120" cy="55" r="5" fill="#003644" />
+                    <circle cx="200" cy="80" r="5" fill="#003644" />
+                    <circle cx="290" cy="95" r="6" fill="#006a60" />
+                  </svg>
+                  <div class="chart__labels">
+                    <span>Û´Û° Ù…ÛŒÙ„ÛŒâ€ŒÚ¯Ø±Ù… (Ø´Ø±ÙˆØ¹)</span>
+                    <span>Û²Û° Ù…ÛŒÙ„ÛŒâ€ŒÚ¯Ø±Ù… (Ø§Ù…Ø±ÙˆØ²)</span>
+                  </div>
+                  <span class="mini-button">
+                    <span class="icon" aria-hidden="true">download</span> ØªÙˆÙ„ÛŒØ¯ Ùˆ Ø¯Ø§Ù†Ù„ÙˆØ¯ Ú¯Ø²Ø§Ø±Ø´ PDF
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel" id="panel-stealth" role="tabpanel" aria-labelledby="tab-stealth" tabindex="0" hidden>
+              <div class="panel__body">
+                <p class="chip-text">Ø­Ø±ÛŒÙ… Ø´Ø®ØµÛŒ Ø¨ÛŒâ€ŒÙ†Ù‚Øµ</p>
+                <h3>Ù¾Ù†Ù‡Ø§Ù†â€ŒØ³Ø§Ø²ÛŒ Ù‡ÙˆØ´Ù…Ù†Ø¯ Ùˆ Ø§Ù…Ù†ÛŒØª Ø¨ÛŒÙˆÙ…ØªØ±ÛŒÚ©</h3>
+                <p>
+                  Ø§Ú¯Ø± Ú¯ÙˆØ´ÛŒ Ø´Ù…Ø§ Ø¯Ø³Øª Ø¯ÙˆØ³ØªØ§Ù† ÛŒØ§ Ù‡Ù…Ú©Ø§Ø±Ø§Ù†ØªØ§Ù† Ø¨Ø§Ø´Ø¯ØŒ Ù‡ÛŒÚ† Ø±Ø¯Ù¾Ø§ÛŒÛŒ Ø§Ø² Ø¯Ø±Ù…Ø§Ù† Ø¯ÛŒØ¯Ù‡ Ù†Ù…ÛŒâ€ŒØ´ÙˆØ¯. Ø¨Ø§ ÙØ¹Ø§Ù„â€ŒØ³Ø§Ø²ÛŒ Â«Ø­Ø§Ù„Øª
+                  Ø§Ø³ØªØªØ§Ø±Â»ØŒ Ø¨Ø±Ù†Ø§Ù…Ù‡ Ø¯Ø± Ø¸Ø§Ù‡Ø± ÛŒÚ© Ø§Ù¾Ù„ÛŒÚ©ÛŒØ´Ù† Ù†ÙˆØ´ÛŒØ¯Ù† Ø±ÙˆØ²Ø§Ù†Ù‡ Û¸ Ù„ÛŒÙˆØ§Ù† Ø¢Ø¨ Ø®ÙˆØ§Ù‡Ø¯ Ø¨ÙˆØ¯!
+                </p>
+                <ul class="panel__list">
+                  <li><span class="icon" aria-hidden="true">lock_reset</span> ÙˆØ±ÙˆØ¯ Ø¨Ø§ Ø§Ø«Ø± Ø§Ù†Ú¯Ø´Øª ÛŒØ§ ØªØ´Ø®ÛŒØµ Ú†Ù‡Ø±Ù‡ Ø¨Ø¯ÙˆÙ† Ù¾Ø³ÙˆØ±Ø¯ Ù…ØªÙ†ÛŒ</li>
+                  <li><span class="icon" aria-hidden="true">notifications_off</span> Ù†ÙˆØªÛŒÙÛŒÚ©ÛŒØ´Ù† Ù…Ø­Ø±Ù…Ø§Ù†Ù‡: Â«Ù†ÙˆØ¨Øª Ù†ÙˆØ´ÛŒØ¯Ù† ÛŒÚ© Ù„ÛŒÙˆØ§Ù† Ø¢Ø¨ Ø§Ø³ØªÂ»</li>
+                </ul>
+              </div>
+
+              <div class="panel__visual">
+                <div class="mini-card">
+                  <div class="mini-card__head">
+                    <strong>ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ø§Ø³ØªØªØ§Ø± Ø¸Ø§Ù‡Ø±ÛŒ</strong>
+                    <span class="icon mini-card__icon" aria-hidden="true">security</span>
+                  </div>
+                  <div class="setting">
+                    <div>
+                      <p>Ù¾ÙˆØ³ØªÙ‡ ÛŒØ§Ø¯Ø¢ÙˆØ± Ø¢Ø¨</p>
+                      <span>ØªØºÛŒÛŒØ± Ø¢ÛŒÚ©ÙˆÙ† Ùˆ Ø³Ø±Ø¨Ø±Ú¯</span>
+                    </div>
+                    <span class="setting__check" aria-hidden="true">âœ“</span>
+                  </div>
+                  <div class="setting">
+                    <div>
+                      <p>Ù‚ÙÙ„ ÙÙˆØ±ÛŒ Ø¨Ø§ ØªÚ©Ø§Ù† Ø¯Ø§Ø¯Ù† Ú¯ÙˆØ´ÛŒ</p>
+                      <span>Shake to Lock</span>
+                    </div>
+                    <span class="setting__check" aria-hidden="true">âœ“</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUNDER -->
+      <section class="section founder" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <article class="founder__card" data-reveal>
+            <header class="founder__head">
+              <div class="founder__id">
+                <span class="founder__icon"><span class="icon" aria-hidden="true">volunteer_activism</span></span>
+                <div>
+                  <h2 id="about-title">Ø¯Ø±Ø¨Ø§Ø±Ù‡ Ø§ÛŒÙ† Ù¾Ø±ÙˆÚ˜Ù‡ Ù…Ø³ØªÙ‚Ù„ Ùˆ Ø±Ø§ÛŒÚ¯Ø§Ù†</h2>
+                  <p class="founder__sub">Ù†Ø§Ù…Ù‡ Ø³Ø§Ø²Ù†Ø¯Ù‡ Ø¨Ù‡ Ù‡Ù…Ø±Ø§Ù‡Ø§Ù† Ø¨Ù‡Ø¨ÙˆØ¯ÛŒ</p>
+                </div>
+              </div>
+              <p class="chip chip--mint">Ù…ØªÙ†â€ŒØ¨Ø§Ø² Ùˆ Ø¨Ø±Ø§ÛŒ Ù‡Ù…ÛŒØ´Ù‡ Ø±Ø§ÛŒÚ¯Ø§Ù† (Free Forever)</p>
+            </header>
+
+            <div class="founder__body">
+              <p>
+                Â«Ø§ÛŒÙ† Ù¾Ø±ÙˆÚ˜Ù‡ Ø­Ø§ØµÙ„ ÛŒÚ© Ø¨Ø§ÙˆØ± Ø¹Ù…ÛŒÙ‚ Ù‚Ù„Ø¨ÛŒ Ø§Ø³Øª: <strong>Ù‡Ø± Ø§Ù†Ø³Ø§Ù†ÛŒ Ø´Ø§ÛŒØ³ØªÙ‡ Ø¨Ø§Ø²Ú¯Ø´Øª Ø¨Ù‡ Ø²Ù†Ø¯Ú¯ÛŒØŒ Ø¨Ø§Ø²ÛŒØ§Ø¨ÛŒ Ú©Ø±Ø§Ù…Øª ÙØ±Ø¯ÛŒ Ùˆ
+                Ø­Ø³ Ø¢Ø±Ø§Ù…Ø´ Ø§Ø³Øª.</strong> Ø¯Ø± ÙØ±Ø§ÛŒÙ†Ø¯ Ø¯Ø±Ù…Ø§Ù† Ø§Ø¹ØªÛŒØ§Ø¯ Ùˆ Ù†Ú¯Ù‡â€ŒØ¯Ø§Ø±Ù†Ø¯Ù‡ Ø¨Ø§ Ù…ØªØ§Ø¯ÙˆÙ† ÛŒØ§ Ø¨ÙˆÙ¾Ø±Ù†ÙˆØ±ÙÛŒÙ†ØŒ Ø¨ÛŒÙ…Ø§Ø± Ø¨ÛŒØ´ØªØ± Ø§Ø² Ù‡Ø±
+                Ø¯Ø§Ø±ÙˆÛŒÛŒ Ø¨Ù‡ Ù…Ø­ÛŒØ·ÛŒ Ø§Ù…Ù† Ùˆ Ø¨Ø¯ÙˆÙ† Ù‚Ø¶Ø§ÙˆØª Ù†ÛŒØ§Ø² Ø¯Ø§Ø±Ø¯.
+              </p>
+              <p>
+                Â«Ø±ÙŽØ³Ø§Â» Ø¨Ø§ Ù‡Ø²ÛŒÙ†Ù‡ Ø´Ø®ØµÛŒØŒ Ø¨Ø¯ÙˆÙ† Ø¬Ø°Ø¨ Ø­ØªÛŒ ÛŒÚ© Ø±ÛŒØ§Ù„ Ø³Ø±Ù…Ø§ÛŒÙ‡ ØªØ¬Ø§Ø±ÛŒ Ùˆ Ø¨Ø¯ÙˆÙ† Ù‡Ø±Ú¯ÙˆÙ†Ù‡ Ù†Ù…Ø§ÛŒØ´ Ø¢Ú¯Ù‡ÛŒ Ø³Ø§Ø®ØªÙ‡ Ø´Ø¯Ù‡ Ø§Ø³Øª ØªØ§
+                Ø¯Ø³ØªØ±Ø³ÛŒ Ù‡Ù…ÙˆØ·Ù†Ø§Ù† Ø¹Ø²ÛŒØ²Ù… Ø¨Ù‡ ÛŒÚ© Ø§Ø¨Ø²Ø§Ø± Ù¾Ø§ÛŒØ´ Ø¹Ù„Ù…ÛŒ Ùˆ Ù…Ø­Ø±Ù…Ø§Ù†Ù‡ØŒ Ù‡Ø±Ú¯Ø² Ø¨Ù‡ Ø®Ø§Ø·Ø± Ù‡Ø²ÛŒÙ†Ù‡â€ŒÙ‡Ø§ÛŒ Ù…Ø§Ù„ÛŒ Ù…Ø­Ø¯ÙˆØ¯ Ù†Ø´ÙˆØ¯. Ù‡ÛŒÚ†
+                Ø³Ø§Ø²Ù…Ø§Ù†ÛŒ Ø¨Ù‡ Ø§ÛŒÙ† Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø¯Ø³ØªØ±Ø³ÛŒ Ù†Ø¯Ø§Ø±Ø¯ Ùˆ ØªÙˆØ³Ø¹Ù‡ Ø¢Ù† ØµØ±ÙØ§Ù‹ Ø§Ø¯Ø§ÛŒ Ø¯ÛŒÙ†ÛŒ Ø§Ø³Øª Ø¨Ù‡ Ø§Ù…ÛŒØ¯ØŒ Ø³Ù„Ø§Ù…Øª Ùˆ Ø®Ø§Ù†ÙˆØ§Ø¯Ù‡â€ŒÙ‡Ø§ÛŒ
+                Ú†Ø´Ù…â€ŒØ§Ù†ØªØ¸Ø§Ø±.Â»
+              </p>
+            </div>
+
+            <footer class="founder__foot">
+              <p>ØªÙˆØ³Ø¹Ù‡â€ŒØ¯Ø§Ø¯Ù‡ Ø´Ø¯Ù‡ Ø¨Ø§ Ø¹Ø´Ù‚ Ùˆ ØªØ¹Ù‡Ø¯ Ø¨Ø±Ø§ÛŒ Ø±Ù‡Ø§ÛŒÛŒ</p>
+              <a href="https://github.com/AmirheydaripourOdin1133/rasa" target="_blank" rel="noopener noreferrer">
+                <span class="icon" aria-hidden="true">code</span>
+                Ù…Ø®Ø²Ù† Ø¢Ø²Ø§Ø¯ Ø¯Ø± Ú¯ÛŒØªâ€ŒÙ‡Ø§Ø¨
+              </a>
+            </footer>
+          </article>
+        </div>
+      </section>
+
+      <!-- HELPLINE -->
+      <section class="helpline" aria-labelledby="helpline-title">
+        <div class="container helpline__inner" data-reveal>
+          <div class="helpline__text">
+            <span class="icon helpline__icon" aria-hidden="true">contact_support</span>
+            <div>
+              <h2 id="helpline-title">Ù„Ø­Ø¸Ø§Øª Ø¯Ø´ÙˆØ§Ø± ÛŒØ§ Ø§Ø´ØªÛŒØ§Ù‚ Ø´Ø¯ÛŒØ¯ Ù…ØµØ±Ù Ø¯Ø§Ø±ÛŒØ¯ØŸ ØªÙ†Ù‡Ø§ Ù†ÛŒØ³ØªÛŒØ¯.</h2>
+              <p>Ù…ØªØ®ØµØµØ§Ù† Ø¨ÛŒâ€ŒØ·Ø±Ù Ùˆ Ø¯Ù„Ø³ÙˆØ² Ø¯Ø± ØªÙ…Ø§Ù… Ø³Ø§Ø¹Ø§Øª Ø´Ø¨Ø§Ù†Ù‡â€ŒØ±ÙˆØ² Ø¢Ù…Ø§Ø¯Ù‡ Ø´Ù†ÛŒØ¯Ù† ØµØ¯Ø§ÛŒ Ø´Ù…Ø§ Ù‡Ø³ØªÙ†Ø¯.</p>
+            </div>
+          </div>
+          <div class="helpline__actions">
+            <a class="btn btn--soft" href="tel:09628">
+              <span class="icon" aria-hidden="true">phone</span>
+              Ø®Ø· Ù…Ù„ÛŒ Ø§Ø¹ØªÛŒØ§Ø¯: Û°Û¹Û¶Û²Û¸ (Ø±Ø§ÛŒÚ¯Ø§Ù†)
+            </a>
+            <a class="btn btn--danger" href="tel:115">
+              <span class="icon" aria-hidden="true">emergency</span>
+              Ø§ÙˆØ±Ú˜Ø§Ù†Ø³: Û±Û±Ûµ
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOWNLOAD -->
+      <section class="section download" id="download-box" aria-labelledby="download-title">
+        <div class="container">
+          <div class="download__card" data-reveal>
+            <div class="download__bg" aria-hidden="true">
+              <svg viewBox="0 0 900 450" preserveAspectRatio="none" focusable="false">
+                <circle cx="450" cy="450" r="380" stroke="#8cf5e4" stroke-opacity=".25" stroke-width="1.5" stroke-dasharray="8 8" fill="none" />
+                <circle cx="450" cy="450" r="260" stroke="#6fd8c8" stroke-opacity=".2" stroke-width="1" fill="none" />
+                <g fill="#8cf5e4" fill-opacity=".55">
+                  <circle cx="220" cy="180" r="2" />
+                  <circle cx="680" cy="180" r="2" />
+                  <circle cx="450" cy="110" r="3" />
+                  <circle cx="340" cy="240" r="1.5" />
+                  <circle cx="560" cy="240" r="1.5" />
+                </g>
+              </svg>
+            </div>
+
+            <div class="download__intro">
+              <p class="chip chip--light">Ø´Ø±ÙˆØ¹ ÛŒÚ© ÙØµÙ„ ØªØ§Ø²Ù‡</p>
+              <h2 id="download-title">Ù‡Ù…ÛŒÙ† Ø§Ù…Ø±ÙˆØ² Ø§ÙˆÙ„ÛŒÙ† Ù‚Ø¯Ù… Ø±Ø§ Ø¨Ø±Ø§ÛŒ ÙØ±Ø¯Ø§ÛŒÛŒ Ø¢Ø±Ø§Ù…â€ŒØªØ± Ø¨Ø±Ø¯Ø§Ø±ÛŒØ¯</h2>
+              <p>
+                Ø¨Ø¯ÙˆÙ† Ù†ÛŒØ§Ø² Ø¨Ù‡ Ø«Ø¨Øª Ù…Ø´Ø®ØµØ§ØªØŒ Ø§ÛŒÙ…ÛŒÙ„ ÛŒØ§ Ù¾Ø±Ø¯Ø§Ø®Øª Ù‡Ø²ÛŒÙ†Ù‡. Ù…Ø³ØªÙ‚ÛŒÙ…Ø§Ù‹ Ø¯Ø± Ù…Ø±ÙˆØ±Ú¯Ø± Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÛŒØ¯ ÛŒØ§ Ø§Ù¾Ù„ÛŒÚ©ÛŒØ´Ù† Ø¢ÙÙ„Ø§ÛŒÙ† Ø±Ø§
+                Ø±ÙˆÛŒ Ú¯ÙˆØ´ÛŒ Ù‡ÙˆØ´Ù…Ù†Ø¯ØªØ§Ù† Ù†ØµØ¨ Ù†Ù…Ø§ÛŒÛŒØ¯.
+              </p>
+            </div>
+
+            <div class="download__actions">
+              <!--
+                âœ³ï¸ Ù„ÛŒÙ†Ú© Ø§Ù¾: Ø¨Ø¹Ø¯ Ø§Ø² Ø®Ø±ÛŒØ¯ Ø¯Ø§Ù…Ù†Ù‡ØŒ YOUR-DOMAIN Ø±Ø§ Ø¬Ø§ÛŒÚ¯Ø²ÛŒÙ† Ú©Ù†ÛŒØ¯.
+                (Ø§Ù¾ ÙØ¹Ù„Ø§Ù‹ PWA Ø§Ø³Øª: Ù†ØµØ¨ Ù…Ø³ØªÙ‚ÛŒÙ… Ø§Ø² Ù…Ø±ÙˆØ±Ú¯Ø± Ø±ÙˆÛŒ Ø§Ù†Ø¯Ø±ÙˆÛŒØ¯/Ø¢ÛŒÙÙˆÙ†/Ø¯Ø³Ú©ØªØ§Ù¾.)
+                Ø³Ø§Ø®Øª APK (TWA Ø¨Ø§ Bubblewrap/PWABuilder) Ø¯Ø± Ù†Ù‚Ø´Ù‡Ù” Ø±Ø§Ù‡ Ø§Ø³ØªØ› Ù¾Ø³ Ø§Ø² Ø§Ù†ØªØ´Ø§Ø±
+                Ù†Ø³Ø®Ù‡Ù” Ù†ØµØ¨ÛŒ ÙˆØ§Ù‚Ø¹ÛŒØŒ Ø¯Ú©Ù…Ù‡Ù” APK Ø±Ø§ Ú©Ù†Ø§Ø± Ù‡Ù…ÛŒÙ† Ø¯Ú©Ù…Ù‡ Ø§Ø¶Ø§ÙÙ‡ Ú©Ù†ÛŒØ¯.
+              -->
+              <a class="btn btn--mint btn--lg" href="https://app.YOUR-DOMAIN.ir/" target="_blank" rel="noopener">
+                <span class="icon" aria-hidden="true">open_in_browser</span>
+                ÙˆØ±ÙˆØ¯ Ùˆ Ù†ØµØ¨ Ù…Ø³ØªÙ‚ÛŒÙ… Ø§Ù¾Ù„ÛŒÚ©ÛŒØ´Ù† (Ø§Ù†Ø¯Ø±ÙˆÛŒØ¯ØŒ Ø¢ÛŒÙÙˆÙ† Ùˆ Ú©Ø§Ù…Ù¾ÛŒÙˆØªØ±)
+              </a>
+              <a class="btn btn--light btn--lg" href="#features">
+                <span class="icon" aria-hidden="true">touch_app</span>
+                Ø¨Ø¯ÙˆÙ† Ø«Ø¨Øªâ€ŒÙ†Ø§Ù… â€” Ù…Ø³ØªÙ‚ÛŒÙ… Ø¯Ø± Ù…Ø±ÙˆØ±Ú¯Ø± Ø§Ù…ØªØ­Ø§Ù† Ú©Ù†ÛŒØ¯
+              </a>
+            </div>
+
+            <ul class="download__meta">
+              <li>Ù†ØµØ¨ Ù…Ø³ØªÙ‚ÛŒÙ… Ø§Ø² Ù…Ø±ÙˆØ±Ú¯Ø± â€” Ø¨Ø¯ÙˆÙ† ÙØ±ÙˆØ´Ú¯Ø§Ù‡ Ø§Ù¾ Ùˆ Ø¨Ø¯ÙˆÙ† APK</li>
+              <li>Ø¢ÙÙ„Ø§ÛŒÙ† Ú©Ø§Ø± Ù…ÛŒâ€ŒÚ©Ù†Ø¯Ø› Ø¯Ø§Ø¯Ù‡â€ŒÙ‡Ø§ ÙÙ‚Ø· Ø±ÙˆÛŒ Ø¯Ø³ØªÚ¯Ø§Ù‡ Ø´Ù…Ø§ Ù…ÛŒâ€ŒÙ…Ø§Ù†Ø¯</li>
+              <li>Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ Ú©Ø§Ù…Ù„ Ø§Ø² ØªÙ‚ÙˆÛŒÙ… Ø¬Ù„Ø§Ù„ÛŒ Ùˆ Ø²Ø¨Ø§Ù† ÙØ§Ø±Ø³ÛŒ</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <section class="footer-col">
+            <h2>Ù¾Ø±ÙˆÚ˜Ù‡ Ø±ÙŽØ³Ø§ (RASA)</h2>
+            <p>
+              Ø¯Ø³ØªÛŒØ§Ø± Ù‡ÙˆØ´Ù…Ù†Ø¯ Ùˆ Ø®ØµÙˆØµÛŒ Ø¯Ø±Ù…Ø§Ù† Ø¢Ú¯ÙˆÙ†ÛŒØ³Øª Ø§Ù¾ÛŒÙˆØ¦ÛŒØ¯ÛŒ (Ù…ØªØ§Ø¯ÙˆÙ†ØŒ Ø¨ÙˆÙ¾Ø±Ù†ÙˆØ±ÙÛŒÙ† Ùˆ Ø´Ø±Ø¨Øª ØªØ±ÛŒØ§Ú©). Ø³Ø§Ø®ØªÙ‡â€ŒØ´Ø¯Ù‡ Ø¨Ø§ Ø±ÙˆÛŒÚ©Ø±Ø¯
+              Ø§Ø­ØªØ±Ø§Ù… Ø¨Ù‡ Ú©Ø±Ø§Ù…Øª Ø§Ù†Ø³Ø§Ù†ÛŒØŒ Ø§Ù…Ù†ÛŒØª Ù…Ø·Ù„Ù‚ Ø¯Ø§Ø¯Ù‡â€ŒÙ‡Ø§ Ùˆ Ù¾Ø§ÛŒØ¨Ù†Ø¯ÛŒ Ø¯Ø±Ù…Ø§Ù†â€ŒÙ…Ø­ÙˆØ± Ø¨Ø¯ÙˆÙ† Ù‚Ø¶Ø§ÙˆØª.
+            </p>
+            <p class="footer-col__version">Ù†Ø³Ø®Ù‡ Ø¹Ù…ÙˆÙ…ÛŒ Û².Û´ â€” Ù…ØªÙ†â€ŒØ¨Ø§Ø² Ùˆ Ø±Ø§ÛŒÚ¯Ø§Ù†</p>
+          </section>
+
+          <section class="footer-col">
+            <h2>ØªØ¹Ù‡Ø¯ Ø¨Ù‡ Ø­Ø±ÛŒÙ… Ø®ØµÙˆØµÛŒ Ø¢ÙÙ„Ø§ÛŒÙ†</h2>
+            <p>
+              Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø¯ÙˆØ² Ù…ØµØ±ÙÛŒØŒ Ø¯Ø§Ø±ÙˆÙ‡Ø§ Ùˆ ÛŒØ§Ø¯Ø¯Ø§Ø´Øªâ€ŒÙ‡Ø§ÛŒ Ø¨Ø§Ù„ÛŒÙ†ÛŒ ØªÙ†Ù‡Ø§ Ø¯Ø± Ø­Ø§ÙØ¸Ù‡ Ø§Ù…Ù† Ø¯Ø³ØªÚ¯Ø§Ù‡ Ø´Ù…Ø§ Ø°Ø®ÛŒØ±Ù‡ Ù…ÛŒâ€ŒÚ¯Ø±Ø¯Ù†Ø¯. Ù‡ÛŒÚ† Ø³Ø±ÙˆØ±
+              Ø®Ø§Ø±Ø¬ÛŒØŒ Ø§Ø¨Ø²Ø§Ø± Ø±Ø¯Ú¯ÛŒØ±ÛŒ ÛŒØ§ Ø°Ø®ÛŒØ±Ù‡â€ŒØ³Ø§Ø²ÛŒ Ø§Ø¨Ø±ÛŒ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯Ø› Ù…Ø­Ø±Ù…Ø§Ù†Ú¯ÛŒ Ù…Ø·Ù„Ù‚ Ø´Ù…Ø§ Ø¯Ø± Ø§ÙˆÙ„ÙˆÛŒØª Ø¨Ù†ÛŒØ§Ø¯ÛŒÙ† Ø±ÙŽØ³Ø§Ø³Øª.
+            </p>
+          </section>
+
+          <section class="footer-col footer-col--crisis">
+            <h2><span class="icon" aria-hidden="true">emergency</span> Ø®Ø·ÙˆØ· Ø§Ù…Ø¯Ø§Ø¯ Ùˆ Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ ÙÙˆØ±ÛŒ Û²Û´ Ø³Ø§Ø¹ØªÙ‡</h2>
+            <ul class="crisis-list">
+              <li>
+                <span>Ø®Ø· Ù…Ù„ÛŒ Ø§Ø¹ØªÛŒØ§Ø¯ Ùˆ Ù…Ø´Ø§ÙˆØ±Ù‡ Ø¨Ù‡Ø¨ÙˆØ¯ÛŒ:</span>
+                <a href="tel:09628" dir="ltr">Û°Û¹Û¶Û²Û¸</a>
+              </li>
+              <li>
+                <span>Ø§ÙˆØ±Ú˜Ø§Ù†Ø³ ÙÙˆØ±ÛŒØªâ€ŒÙ‡Ø§ÛŒ Ù¾Ø²Ø´Ú©ÛŒ:</span>
+                <a class="crisis-list__danger" href="tel:115" dir="ltr">Û±Û±Ûµ</a>
+              </li>
+              <li>
+                <span>Ø§ÙˆØ±Ú˜Ø§Ù†Ø³ Ø§Ø¬ØªÙ…Ø§Ø¹ÛŒ Ú©Ø´ÙˆØ±:</span>
+                <a class="crisis-list__mint" href="tel:123" dir="ltr">Û±Û²Û³</a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="footer-col">
+            <h2>ØªÙˆØ³Ø¹Ù‡ Ù…Ø³ØªÙ‚Ù„ Ùˆ Ø§Ø¬ØªÙ…Ø§Ø¹â€ŒÙ…Ø­ÙˆØ±</h2>
+            <p>
+              Ø±ÙŽØ³Ø§ Ù…Ø­ØµÙˆÙ„ÛŒ Ø§Ù†Ø³Ø§Ù†â€ŒØ¯ÙˆØ³ØªØ§Ù†Ù‡ Ùˆ Ù…Ø³ØªÙ‚Ù„ Ø§Ø² Ù†Ù‡Ø§Ø¯Ù‡Ø§ÛŒ Ù†Ø¸Ø§Ø±ØªÛŒ Ø§Ø³Øª. Ú©Ø¯ Ù…Ù†Ø¨Ø¹ Ø¨Ù‡ ØµÙˆØ±Øª Ø¹Ù…ÙˆÙ…ÛŒ Ø¯Ø± Ú¯ÛŒØªâ€ŒÙ‡Ø§Ø¨ Ø¯Ø± Ø¯Ø³ØªØ±Ø³
+              Ù¾Ú˜ÙˆÙ‡Ø´Ú¯Ø±Ø§Ù†ØŒ Ù¾Ø²Ø´Ú©Ø§Ù† Ùˆ Ø¨Ø±Ù†Ø§Ù…Ù‡â€ŒÙ†ÙˆÛŒØ³Ø§Ù† Ø³Ù„Ø§Ù…Øª Ø±ÙˆØ§Ù† Ù‚Ø±Ø§Ø± Ø¯Ø§Ø±Ø¯.
+            </p>
+            <ul class="footer-col__links">
+              <li>
+                <a href="https://github.com/AmirheydaripourOdin1133/rasa" target="_blank" rel="noopener noreferrer">
+                  <span class="icon" aria-hidden="true">code</span> Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ù…Ø®Ø²Ù† Ø¯Ø± Ú¯ÛŒØªâ€ŒÙ‡Ø§Ø¨ (GitHub)
+                </a>
+              </li>
+              <li>
+                <a href="#showcase">
+                  <span class="icon" aria-hidden="true">menu_book</span> Ø±Ø§Ù‡Ù†Ù…Ø§ÛŒ Ø¨Ø§Ù„ÛŒÙ†ÛŒ Ù¾Ø±ÙˆØªÚ©Ù„â€ŒÙ‡Ø§ÛŒ Ø¯Ø±Ù…Ø§Ù†ÛŒ
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="site-footer__bottom">
+          <p>
+            ØªÙ…Ø§Ù…ÛŒ Ø­Ù‚ÙˆÙ‚ Ø§ÛŒÙ† Ø³Ø§Ù…Ø§Ù†Ù‡ Ù…ØªØ¹Ù„Ù‚ Ø¨Ù‡ Ø¬Ø§Ù…Ø¹Ù‡ Ø¨ÛŒÙ…Ø§Ø±Ø§Ù† Ø¯Ø± Ù…Ø³ÛŒØ± Ø¨Ù‡Ø¨ÙˆØ¯ÛŒ Ùˆ ÙØ¹Ø§Ù„Ø§Ù† Ú©Ø§Ù‡Ø´ Ø¢Ø³ÛŒØ¨ Ø§Ø³Øª. Ø¨Ø§Ø²ØªÙˆÙ„ÛŒØ¯ Ø¢Ø²Ø§Ø¯ Ø¨Ø§ Ø°Ú©Ø±
+            Ù‡Ø¯Ù Ø®ÛŒØ±Ø®ÙˆØ§Ù‡Ø§Ù†Ù‡.
+          </p>
+          <ul>
+            <li><a href="#privacy">Ø´ÛŒÙˆÙ‡â€ŒÙ†Ø§Ù…Ù‡ Ù…Ø­Ø±Ù…Ø§Ù†Ú¯ÛŒ</a></li>
+            <li><a href="#showcase">Ú©Ø§Ù„ÛŒØ¨Ø±Ø§Ø³ÛŒÙˆÙ† Ùˆ Ø§Ù†Ø·Ø¨Ø§Ù‚</a></li>
+            <li><a href="#about">ØªÙ…Ø§Ø³ Ø¨Ø§ ØªÙˆØ³Ø¹Ù‡â€ŒØ¯Ù‡Ù†Ø¯Ú¯Ø§Ù†</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Ø¨Ø§Ø²Ú¯Ø´Øª Ø¨Ù‡ Ø¨Ø§Ù„Ø§ÛŒ ØµÙØ­Ù‡" aria-hidden="true" tabindex="-1">
+      <span class="icon" aria-hidden="true">arrow_upward</span>
+    </button>
+
+  </body>
+</html>

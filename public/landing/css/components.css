@@ -1,0 +1,345 @@
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), box-shadow 0.2s var(--ease),
+    transform 0.12s var(--ease), border-color 0.2s var(--ease);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--sm {
+  min-height: 2.65rem;
+  padding: 0.45rem 1rem;
+  font-size: 0.84rem;
+}
+
+.btn--lg {
+  min-height: 3.4rem;
+  padding: 0.85rem 1.6rem;
+  font-size: 0.95rem;
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: 0 8px 22px -6px rgba(0, 54, 68, 0.45);
+}
+
+.btn--primary:hover {
+  background: var(--primary-container);
+  box-shadow: 0 12px 26px -8px rgba(0, 106, 96, 0.5);
+}
+
+.btn--glass {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(0, 54, 68, 0.12);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 14px -6px rgba(0, 54, 68, 0.25);
+}
+
+.btn--glass:hover {
+  background: var(--white);
+}
+
+.btn--soft {
+  background: var(--white);
+  border-color: var(--hairline);
+  box-shadow: var(--shadow-1);
+}
+
+.btn--soft:hover {
+  background: var(--surface);
+}
+
+.btn--danger {
+  background: var(--error-container);
+  color: var(--on-error-container);
+  box-shadow: var(--shadow-1);
+}
+
+.btn--danger:hover {
+  background: #ffcfc9;
+}
+
+.btn--mint {
+  background: var(--secondary-fixed);
+  color: var(--on-secondary-fixed-variant);
+  box-shadow: 0 12px 26px -10px rgba(0, 240, 210, 0.5);
+}
+
+.btn--mint:hover {
+  background: var(--secondary-container);
+}
+
+.btn--light {
+  background: var(--white);
+  color: var(--primary);
+  box-shadow: 0 12px 26px -10px rgba(0, 0, 0, 0.35);
+}
+
+.btn--light:hover {
+  background: var(--surface-low);
+}
+
+/* ---------- Download button hover: lift + light sweep + icon kick ---------- */
+
+.btn--mint,
+.btn--light {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background-color 0.2s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.btn--mint::after,
+.btn--light::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  transform: translateX(180%) skewX(-16deg);
+  transition: transform 0.7s var(--ease);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn--mint:hover,
+.btn--light:hover {
+  transform: translateY(-3px);
+}
+
+.btn--mint:hover::after,
+.btn--light:hover::after {
+  transform: translateX(-260%) skewX(-16deg);
+}
+
+.btn--mint:hover .icon,
+.btn--light:hover .icon {
+  transform: translateY(-3px) rotate(-8deg);
+  transition: transform 0.3s var(--ease);
+}
+
+.btn--mint:hover {
+  box-shadow: 0 18px 34px -12px rgba(0, 106, 96, 0.55);
+}
+
+.btn--light:hover {
+  background: var(--white);
+  box-shadow: 0 18px 34px -12px rgba(0, 54, 68, 0.7);
+}
+
+.btn--light .icon {
+  color: var(--secondary);
+}
+
+.btn--mint:active,
+.btn--light:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--mint::after,
+  .btn--light::after {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .btn--lg {
+    width: 100%;
+  }
+}
+
+/* ---------- Chips & pills ---------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.chip--solid {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+.chip--live {
+  background: #ecfdf5;
+  border: 1px solid rgba(0, 106, 96, 0.15);
+  color: var(--secondary);
+  border-radius: var(--radius-pill);
+  padding: 0.1rem 0.45rem;
+  font-size: 0.62rem;
+}
+
+.chip--mint {
+  background: #ecfdf5;
+  border: 1px solid rgba(0, 106, 96, 0.15);
+  color: var(--secondary);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.85rem;
+  font-size: 0.78rem;
+}
+
+.chip--light {
+  background: var(--surface-high);
+  color: var(--primary);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.76rem;
+}
+
+/* Beats `.download__intro p` so the pill keeps its own light-on-dark look. */
+.download__intro p.chip--light {
+  background: var(--surface-high);
+  color: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 0.76rem;
+  line-height: 1.7;
+  box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.6);
+}
+
+.chip .dot,
+.dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--secondary);
+  flex: none;
+}
+
+/* ---------- Section headings ---------- */
+
+.section-head {
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: 2.25rem;
+}
+
+.section-head--tight {
+  max-width: 40rem;
+  margin-bottom: 1.75rem;
+}
+
+.section-head h2 {
+  font-size: clamp(1.35rem, 1.05rem + 1.3vw, 1.95rem);
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.section-head__text {
+  color: var(--on-surface-variant);
+  font-size: 0.95rem;
+  line-height: 1.95;
+}
+
+.eyebrow {
+  display: inline-block;
+  justify-self: center;
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--secondary-fixed);
+  color: var(--on-secondary-fixed-variant);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.chip-text {
+  display: inline-block;
+  justify-self: start;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--secondary-fixed);
+  color: var(--on-secondary-fixed-variant);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+/* ---------- Tabs ---------- */
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.9rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(192, 200, 203, 0.35);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--on-surface-variant);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.tab .icon {
+  font-size: 1.15rem;
+}
+
+.tab:hover {
+  color: var(--primary);
+  border-color: rgba(0, 106, 96, 0.3);
+}
+
+.tab[aria-selected="true"] {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+@media (max-width: 767px) {
+  .tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab {
+    flex: none;
+  }
+}
