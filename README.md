@@ -2,13 +2,38 @@
 
 # رسا | RASA — همراه مسیر پایدار بهبود
 
-![Version](https://img.shields.io/badge/نسخه-۱٫۰٫۰-003644) ![Next.js](https://img.shields.io/badge/Next.js-15-000000) ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6) ![Tests](https://img.shields.io/badge/تست‌ها-۹۶%20✓-2E9E5B) ![PWA](https://img.shields.io/badge/PWA-نصب‌پذیر-5B21B6)
+![Version](https://img.shields.io/badge/نسخه-۱٫۰٫۰-003644) ![Next.js](https://img.shields.io/badge/Next.js-15-000000) ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6) ![Tests](https://img.shields.io/badge/تست‌ها-۱۰۶%20✓-2E9E5B) ![PWA](https://img.shields.io/badge/PWA-نصب‌پذیر-5B21B6)
 
 **رسا** یک اپلیکیشن وب فارسی، راست‌به‌چپ و نصب‌پذیر (PWA) است که به افراد تحت **درمان با متادون** کمک می‌کند مسیر درمان خود را دقیق ثبت و مشاهده کنند: ثبت مصرف روزانه (قرص یا شربت)، چک‌این روزانهٔ حال و علائم، برنامهٔ درمان نسخه‌بندی‌شده با تأیید صریح درمانگر، گزارش و نمودار روند در **تقویم شمسی**، و راهنمای ایمنِ بی‌طرف.
 
 > ⚕️ **رسا ثبت‌کننده است، نه تجویزکننده.**
 > هیچ‌گاه دوز پیشنهاد نمی‌دهد، برنامهٔ کاهش نمی‌سازد، دوز جبرانی توصیه نمی‌کند و تشخیص نمی‌دهد.
 > تمام تصمیم‌های درمانی فقط با درمانگر شماست. این اپ جایگزین معاینه، تشخیص یا نسخهٔ پزشک نیست.
+
+---
+
+## 📸 نمای اپ (اسکرین‌شات واقعی — حالت نمایشی)
+
+| | |
+|---|---|
+| ![خوش‌آمد و تنظیم اولیه](docs/screenshots/01-welcome-onboarding.png) | ![داشبورد روزانه](docs/screenshots/02-dashboard.png) |
+| ![ثبت دقیق مصرف](docs/screenshots/03-medication-log.png) | ![گزارش و روند (محور شمسی)](docs/screenshots/04-reports.png) |
+| ![برنامهٔ درمان](docs/screenshots/05-plan.png) | ![چک‌این روزانه](docs/screenshots/06-checkin.png) |
+| ![ایمنی و پشتیبانی](docs/screenshots/07-safety.png) | ![پروفایل و مالکیت داده](docs/screenshots/08-profile-settings.png) |
+
+## 🧭 گردش کار اپ (خلاصه)
+
+۱. **ورود بدون ثبت‌نام** ← صفحهٔ خوش‌آمد؛ یا تنظیم اولیه، یا «داده نمایشی» (شربت/قرص).
+۲. **پروفایل دارو طبق بسته** ← قرص/شربت، قدرت یا غلظت، مقدار تجویزی درمانگر، ساعت مصرف.
+۳. **برنامهٔ درمان** ← ثبت با تأیید صریح و تاریخ مرور؛ بدون تأیید نمایش نمی‌شود؛ عقب‌افتادن مرور فقط هشدار نمایشی است.
+۴. **ثبت روزانهٔ مصرف** ← هر نوبت: مصرف شد / با تأخیر / نامطمئن / ثبت نشد؛ بدون قضاوت، بدون دوز جبرانی.
+۵. **چک‌این روزانه** ← هفت سنجهٔ کوتاه و اختیاری با «مطمئن نیستم».
+۶. **گزارش و روند** ← نمودار شمسی، پایبندی، تحلیل علامت‌ها، خروجی CSV و نسخهٔ چاپی برای ویزیت.
+۷. **ایمنی** ← راهنمای نوبت فراموش‌شده و تماس ۱۱۵ همیشه در دسترس.
+۸. **پروفایل و داده‌ها** ← یادآورها، خروجی JSON کامل، پاک‌سازی کامل.
+۹. **نصب PWA** ← اندروید/دسکتاپ با یک لمس؛ آیفون با «افزودن به صفحهٔ اصلی».
+
+روایت کامل: [`docs/RELEASE-v1.0.0.md`](docs/RELEASE-v1.0.0.md)
 
 ---
 
@@ -40,7 +65,7 @@ npm run dev      # http://localhost:3000
 ```bash
 npm run lint         # ESLint — بدون خطا
 npm run typecheck    # TypeScript strict — بدون خطا
-npm test             # ۹۶ تست واحد — سبز
+npm test             # ۱۰۶ تست واحد — سبز
 npm run build        # بیلد تولیدی — موفق
 ```
 
@@ -70,6 +95,7 @@ npm run build        # بیلد تولیدی — موفق
 | [`docs/data-model.md`](docs/data-model.md) | مدل دامنهٔ TypeScript + شمای PostgreSQL، ماشین‌حالت برنامه |
 | [`docs/security-model.md`](docs/security-model.md) | حداقل‌سازی داده، جداسازی مخزن‌ها، وضعیت بک‌اند، بهداشت اسرار |
 | [`docs/setup-and-testing.md`](docs/setup-and-testing.md) | نصب، دروازه‌های کیفیت، چک‌لیست مرورگر/PWA، رفع اشکال |
+| [`docs/RELEASE-v1.0.0.md`](docs/RELEASE-v1.0.0.md) | متن کامل یادداشت انتشار v1.0.0 + گردش کار و تصاویر |
 | [`deploy/DEPLOY-fa.md`](deploy/DEPLOY-fa.md) | راهنمای گام‌به‌گام استقرار فارسی (VPS/PM2/Nginx/SSL یا Liara) |
 | [`deploy/DEPLOY-CHABOKAN-fa.md`](deploy/DEPLOY-CHABOKAN-fa.md) | ستاپ پیشنهادی روی چابکان: یک سرویس Next + دو دامنه — لندینگ روی ریشه، اپ روی `app.` (middleware داخلی) |
 | [`supabase/`](supabase/) | بک‌اند اختیاری: شمای RLS-محور + دادهٔ اولیهٔ مصنوعی (پیش‌فرض غیرفعال) |
