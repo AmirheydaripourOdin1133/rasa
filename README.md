@@ -16,10 +16,10 @@
 
 | | |
 |---|---|
-| ![خوش‌آمد و تنظیم اولیه](docs/screenshots/01-welcome-onboarding.png) | ![داشبورد روزانه](docs/screenshots/02-dashboard.png) |
-| ![ثبت دقیق مصرف](docs/screenshots/03-medication-log.png) | ![گزارش و روند (محور شمسی)](docs/screenshots/04-reports.png) |
-| ![برنامهٔ درمان](docs/screenshots/05-plan.png) | ![چک‌این روزانه](docs/screenshots/06-checkin.png) |
-| ![ایمنی و پشتیبانی](docs/screenshots/07-safety.png) | ![پروفایل و مالکیت داده](docs/screenshots/08-profile-settings.png) |
+| ![خوش‌آمد و تنظیم اولیه](docs/screenshots/webp/01-welcome-onboarding.webp) | ![داشبورد روزانه](docs/screenshots/webp/02-dashboard.webp) |
+| ![ثبت دقیق مصرف](docs/screenshots/webp/03-medication-log.webp) | ![گزارش و روند (محور شمسی)](docs/screenshots/webp/04-reports.webp) |
+| ![برنامهٔ درمان](docs/screenshots/webp/05-plan.webp) | ![چک‌این روزانه](docs/screenshots/webp/06-checkin.webp) |
+| ![ایمنی و پشتیبانی](docs/screenshots/webp/07-safety.webp) | ![پروفایل و مالکیت داده](docs/screenshots/webp/08-profile-settings.webp) |
 
 ## 🧭 گردش کار اپ (خلاصه)
 

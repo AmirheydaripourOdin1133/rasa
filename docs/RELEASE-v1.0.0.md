@@ -50,13 +50,13 @@
 
 | | |
 |---|---|
-| ![خوش‌آمد و تنظیم اولیه](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/01-welcome-onboarding.png) | ![داشبورد روزانه](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/02-dashboard.png) |
+| ![خوش‌آمد و تنظیم اولیه](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/webp/01-welcome-onboarding.webp) | ![داشبورد روزانه](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/webp/02-dashboard.webp) |
 | *خوش‌آمد — بدون ثبت‌نام* | *داشبورد — وعدهٔ امروز و پایبندی هفته* |
-| ![ثبت مصرف](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/03-medication-log.png) | ![گزارش و روند](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/04-reports.png) |
+| ![ثبت مصرف](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/webp/03-medication-log.webp) | ![گزارش و روند](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/webp/04-reports.webp) |
 | *ثبت دقیق مصرف با وضعیت هر نوبت* | *گزارش و روند با محور شمسی* |
-| ![برنامهٔ درمان](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/05-plan.png) | ![چک‌این روزانه](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/06-checkin.png) |
+| ![برنامهٔ درمان](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/webp/05-plan.webp) | ![چک‌این روزانه](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/webp/06-checkin.webp) |
 | *برنامهٔ درمان — تأیید صریح و مرور* | *چک‌این — هفت سنجهٔ اختیاری* |
-| ![ایمنی و پشتیبانی](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/07-safety.png) | ![پروفایل و داده‌ها](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/08-profile-settings.png) |
+| ![ایمنی و پشتیبانی](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/webp/07-safety.webp) | ![پروفایل و داده‌ها](https://raw.githubusercontent.com/AmirheydaripourOdin1133/rasa/main/docs/screenshots/webp/08-profile-settings.webp) |
 | *ایمنی — راهنما و تماس ۱۱۵* | *پروفایل — خروجی و پاک‌سازی داده* |
 
 اسکرین‌شات‌های کامل (نمای پیوستهٔ صفحه): [`docs/screenshots/`](docs/screenshots/)
